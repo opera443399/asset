@@ -2,7 +2,7 @@
 # 
 # 2016/2/2
 
-source_path='/opt/IDC'
+source_path='/opt/idc'
 
 function do_f(){
     n=`find "${source_path}/www" ! -user nobody -print |wc -l`

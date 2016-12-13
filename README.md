@@ -17,11 +17,19 @@ prepare
         [root@tvm001 ~]# cd /opt
         直接克隆这个项目
         [root@tvm001 opt]# git clone git项目来源
-        [root@tvm001 opt]# cd IDC/www/
+        [root@tvm001 opt]# cd idc/www/
 
 
 3. 试着运行一下 ::
 
+        初始化db：
+        [root@tvm001 www]# python manage.py migrate
+        创建root：
+        [root@tvm001 www]# python manage.py createsuperuser
+        初始化app库：
+        [root@tvm001 www]# python manage.py makemigrations hosts
+        [root@tvm001 www]# python manage.py migrate
+        
         django默认是启用了 DEBUG 选项，但 IDC 这个项目的代码已经关闭 DEBUG 选项，并设置了一下内容：
         ALLOWED_HOSTS
         STATIC_URL STATIC_ROOT
@@ -171,15 +179,15 @@ uwsgi+supervisord+nginx
 
         [root@tvm001 www]# cat /etc/supervisor.d/uwsgi.ini
         [program:uwsgi]
-        command=/usr/bin/uwsgi --socket 127.0.0.1:8090 --chdir /opt/IDC/www --module www.wsgi
+        command=/usr/bin/uwsgi --socket 127.0.0.1:8090 --chdir /opt/idc/www --module www.wsgi
         user=nobody
         autostart=true
         autorestart=true
-        stdout_logfile=/tmp/IDC.stdout.log
-        stderr_logfile=/tmp/IDC.stderr.log
+        stdout_logfile=/tmp/idc.stdout.log
+        stderr_logfile=/tmp/idc.stderr.log
 
         注：这里配置了 user，对应的，project的目录也应该是这个用户才能对示例中的本地数据库有读写权限。
-        [root@tvm001 www]# chown nobody:nobody -R /opt/IDC/www
+        [root@tvm001 www]# chown nobody:nobody -R /opt/idc/www
 
     6）启动 uwsgi 服务：
 
@@ -203,11 +211,11 @@ uwsgi+supervisord+nginx
             charset utf-8;
             
             location /static {
-                alias /opt/IDC/www/static;
+                alias /opt/idc/www/static;
             }
             
             location /media {
-                alias /opt/IDC/www/media;
+                alias /opt/idc/www/media;
             }
             
             location / {
@@ -228,11 +236,11 @@ uwsgi+supervisord+nginx
             charset utf-8;
             
             location /static {
-                alias /opt/IDC/www/static;
+                alias /opt/idc/www/static;
             }
             
             location /media {
-                alias /opt/IDC/www/media;
+                alias /opt/idc/www/media;
             }
             
             location / {
