@@ -1,0 +1,277 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-19 17:21+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:43 admin.py:65
+msgid "OS"
+msgstr "操作系统"
+
+#: admin.py:46 admin.py:68
+msgid "APP"
+msgstr "应用"
+
+#: admin.py:47 admin.py:67
+msgid "Status"
+msgstr "状态"
+
+#: admin.py:48
+msgid "Device"
+msgstr "设备"
+
+#: admin.py:50
+msgid "IDC Info"
+msgstr "IDC信息"
+
+#: admin.py:51
+msgid "Asset"
+msgstr "资产编号"
+
+#: admin.py:52 admin.py:69
+msgid "Date information"
+msgstr "日期"
+
+#: models.py:19
+msgid "Vendor Name"
+msgstr "厂商名称"
+
+#: models.py:20
+msgid "Vendor Description"
+msgstr "厂商描述"
+
+#: models.py:26 models.py:27
+msgid "Vendors"
+msgstr "厂商"
+
+#: models.py:31
+msgid "Host Type"
+msgstr "机型"
+
+#: models.py:32
+msgid "Host CPU"
+msgstr "CPU"
+
+#: models.py:33
+msgid "Host Memory"
+msgstr "内存"
+
+#: models.py:34
+msgid "Host Disk SSD"
+msgstr "磁盘（SSD）"
+
+#: models.py:35
+msgid "Host Disk SAS"
+msgstr "磁盘（SAS）"
+
+#: models.py:36
+msgid "Host Disk SATA"
+msgstr "磁盘（SATA）"
+
+#: models.py:37
+msgid "Host NIC Card"
+msgstr "网卡"
+
+#: models.py:38
+msgid "Host PSU"
+msgstr "电源"
+
+#: models.py:39
+msgid "Device RAID Card"
+msgstr "RAID卡"
+
+#: models.py:40
+msgid "Device Description"
+msgstr "设备描述"
+
+#: models.py:46 models.py:47
+msgid "Device Type"
+msgstr "设备类别"
+
+#: models.py:51
+msgid "IDC Tag"
+msgstr "IDC标签"
+
+#: models.py:52
+msgid "IDC Fullname"
+msgstr "IDC全称"
+
+#: models.py:53
+msgid "IDC Location"
+msgstr "IDC位置"
+
+#: models.py:59 models.py:60
+msgid "IDC"
+msgstr "IDC"
+
+#: models.py:64
+msgid "OS Tag"
+msgstr "OS标签"
+
+#: models.py:65
+msgid "OS Description"
+msgstr "OS描述"
+
+#: models.py:71 models.py:72
+msgid "OS Type"
+msgstr "操作系统"
+
+#: models.py:76
+msgid "Username"
+msgstr "用户名"
+
+#: models.py:77
+msgid "Department"
+msgstr "部门"
+
+#: models.py:83 models.py:84
+msgid "End User"
+msgstr "使用人"
+
+#: models.py:88
+msgid "Cluster Name"
+msgstr "集群名称"
+
+#: models.py:89
+msgid "Cluster Description"
+msgstr "集群描述"
+
+#: models.py:95 models.py:96
+msgid "Cluster"
+msgstr "集群"
+
+#: models.py:100 models.py:154
+msgid "hostname"
+msgstr "主机名"
+
+#: models.py:103
+msgid "IP_WAN1"
+msgstr "外网IP1"
+
+#: models.py:104
+msgid "IP_WAN2"
+msgstr "外网IP2"
+
+#: models.py:105
+msgid "IP_LAN_MGMT"
+msgstr "管理IP"
+
+#: models.py:106
+msgid "IP_LAN_STOR"
+msgstr "存储IP"
+
+#: models.py:107
+msgid "IP_LAN_BIZ"
+msgstr "业务IP"
+
+#: models.py:109 models.py:161
+msgid "Admin"
+msgstr "管理员帐号"
+
+#: models.py:110 models.py:162
+msgid "Password of Admin"
+msgstr "管理员密码"
+
+#: models.py:111 models.py:163
+msgid "Guest"
+msgstr "用户帐号"
+
+#: models.py:112 models.py:164
+msgid "Password of Guest"
+msgstr "用户密码"
+
+#: models.py:114 models.py:169
+msgid "App Description"
+msgstr "应用描述"
+
+#: models.py:117 models.py:166
+msgid "Is Monited?"
+msgstr "已监控"
+
+#: models.py:118 models.py:167
+msgid "Is Online?"
+msgstr "已上线"
+
+#: models.py:119
+msgid "Is Virt Host?"
+msgstr "是宿主机？"
+
+#: models.py:121
+msgid "SN"
+msgstr "序列号"
+
+#: models.py:124
+msgid "IPMI IP"
+msgstr ""
+
+#: models.py:125
+msgid "IPMI User"
+msgstr "IPMI帐号"
+
+#: models.py:126
+msgid "IPMI Password"
+msgstr "IPMI密码"
+
+#: models.py:127
+msgid "RAID"
+msgstr "RAID"
+
+#: models.py:130
+msgid "IDC Rack No."
+msgstr "机柜编号"
+
+#: models.py:131
+msgid "IDC Rack Height"
+msgstr "在机柜中的高度"
+
+#: models.py:133
+msgid "Asset No."
+msgstr "资产编号"
+
+#: models.py:134 models.py:174
+msgid "When Created?"
+msgstr "何时创建？"
+
+#: models.py:135 models.py:175
+msgid "When Destroyed?"
+msgstr "何时销毁？"
+
+#: models.py:141 models.py:142
+msgid "Machines"
+msgstr "物理机"
+
+#: models.py:150 models.py:189
+msgid "Added recently?"
+msgstr "最近新增？"
+
+#: models.py:158
+msgid "IP_WAN"
+msgstr "外网IP"
+
+#: models.py:159
+msgid "IP_LAN"
+msgstr "内网IP"
+
+#: models.py:171
+msgid "Mount Point"
+msgstr "挂载点"
+
+#: models.py:172
+msgid "VM Description"
+msgstr "vm描述"
+
+#: models.py:181 models.py:182
+msgid "VMs"
+msgstr "虚拟机"
