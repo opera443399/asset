@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-19 17:21+0800\n"
+"POT-Creation-Date: 2016-12-20 10:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,7 @@ msgstr "IDC全称"
 msgid "IDC Location"
 msgstr "IDC位置"
 
-#: models.py:59 models.py:60
+#: models.py:59 models.py:60 models.py:129
 msgid "IDC"
 msgstr "IDC"
 
@@ -124,7 +124,7 @@ msgstr "OS标签"
 msgid "OS Description"
 msgstr "OS描述"
 
-#: models.py:71 models.py:72
+#: models.py:71 models.py:72 models.py:108 models.py:160
 msgid "OS Type"
 msgstr "操作系统"
 
@@ -136,9 +136,9 @@ msgstr "用户名"
 msgid "Department"
 msgstr "部门"
 
-#: models.py:83 models.py:84
-msgid "End User"
-msgstr "使用人"
+#: models.py:83 models.py:84 models.py:115 models.py:170
+msgid "Client"
+msgstr "使用者"
 
 #: models.py:88
 msgid "Cluster Name"
@@ -148,7 +148,7 @@ msgstr "集群名称"
 msgid "Cluster Description"
 msgstr "集群描述"
 
-#: models.py:95 models.py:96
+#: models.py:95 models.py:96 models.py:101
 msgid "Cluster"
 msgstr "集群"
 
@@ -212,6 +212,14 @@ msgstr "是宿主机？"
 msgid "SN"
 msgstr "序列号"
 
+#: models.py:122
+msgid "Vendor"
+msgstr "厂商"
+
+#: models.py:123
+msgid "Model"
+msgstr "机型"
+
 #: models.py:124
 msgid "IPMI IP"
 msgstr ""
@@ -256,6 +264,14 @@ msgstr "物理机"
 msgid "Added recently?"
 msgstr "最近新增？"
 
+#: models.py:155
+msgid "On Host"
+msgstr "宿主机"
+
+#: models.py:156
+msgid "On Cluster"
+msgstr "集群"
+
 #: models.py:158
 msgid "IP_WAN"
 msgstr "外网IP"
@@ -270,8 +286,9 @@ msgstr "挂载点"
 
 #: models.py:172
 msgid "VM Description"
-msgstr "vm描述"
+msgstr "vm备注"
 
 #: models.py:181 models.py:182
 msgid "VMs"
 msgstr "虚拟机"
+

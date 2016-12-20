@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 ###################################
 # @ Django 1.9.1
-# @ 2016-12-19
+# @ 2016-12-20
 # @ pc
 ###################################
+
 from __future__ import unicode_literals
 
 from django.db import models
@@ -72,7 +73,7 @@ class OSType(models.Model):
         verbose_name_plural = _('OS Type')
 
 
-class EndUser(models.Model):
+class Client(models.Model):
     username = models.CharField(_('Username'), max_length=20)
     department = models.CharField(_('Department'), max_length=20)
 
@@ -80,8 +81,8 @@ class EndUser(models.Model):
         return self.username
 
     class Meta:
-        verbose_name = _('End User')
-        verbose_name_plural = _('End User')
+        verbose_name = _('Client')
+        verbose_name_plural = _('Client')
 
 
 class Cluster(models.Model):
@@ -98,35 +99,35 @@ class Cluster(models.Model):
 
 class Machine(models.Model):
     hostname = models.CharField(_('hostname'), max_length=100, unique=True)
-    cluster = models.ForeignKey(Cluster, default='1')
+    cluster = models.ForeignKey(Cluster, default='1', verbose_name=_('Cluster'))
     #
     os_ip_wan1 = models.GenericIPAddressField(_('IP_WAN1'), null=True, blank=True)
     os_ip_wan2 = models.GenericIPAddressField(_('IP_WAN2'), null=True, blank=True)
     os_ip_lan_mgmt = models.GenericIPAddressField(_('IP_LAN_MGMT'))
     os_ip_lan_stor = models.GenericIPAddressField(_('IP_LAN_STOR'), null=True, blank=True)
     os_ip_lan_biz = models.GenericIPAddressField(_('IP_LAN_BIZ'), null=True, blank=True)
-    os_type = models.ForeignKey(OSType, default='1')
+    os_type = models.ForeignKey(OSType, default='1', verbose_name=_('OS Type'))
     os_user_root = models.CharField(_('Admin'), max_length=20)
     os_pass_root = models.CharField(_('Password of Admin'), max_length=40)
     os_user_guest = models.CharField(_('Guest'), max_length=20, null=True, blank=True)
     os_pass_guest = models.CharField(_('Password of Guest'), max_length=40, null=True, blank=True)
     #
     app_desc = models.CharField(_('App Description'), max_length=40, default='NOT_IN_USE')
-    client = models.ForeignKey(EndUser, default='1')
+    client = models.ForeignKey(Client, default='1', verbose_name=_('Client'))
     #
     is_monited = models.BooleanField(_('Is Monited?'), default=False)
     is_online = models.BooleanField(_('Is Online?'), default=False)
     is_v_host = models.BooleanField(_('Is Virt Host?'), default=False)
     #
     device_sn = models.CharField(_('SN'), max_length=40, null=True, blank=True)
-    vendor = models.ForeignKey(Vendor, default='1')
-    model = models.ForeignKey(DeviceType, default='1')
+    vendor = models.ForeignKey(Vendor, default='1', verbose_name=_('Vendor'))
+    model = models.ForeignKey(DeviceType, default='1', verbose_name=_('Model'))
     device_ipmi_ip = models.GenericIPAddressField(_('IPMI IP'), null=True, blank=True)
     device_ipmi_user = models.CharField(_('IPMI User'), max_length=20, null=True, blank=True)
     device_ipmi_pass = models.CharField(_('IPMI Password'), max_length=40, null=True, blank=True)
     device_raid_level = models.CharField(_('RAID'), max_length=20, null=True, blank=True)
     #
-    idc = models.ForeignKey(IDCInfo, default='1')
+    idc = models.ForeignKey(IDCInfo, default='1', verbose_name=_('IDC'))
     idc_rack = models.CharField(_('IDC Rack No.'), max_length=10, default='0')
     idc_rack_h = models.IntegerField(_('IDC Rack Height'), default=0)
     #
@@ -152,12 +153,12 @@ class Machine(models.Model):
 
 class Vm(models.Model):
     hostname = models.CharField(_('hostname'), max_length=100, unique=True)
-    on_host = models.ForeignKey(Machine, default='1')
-    on_cluster = models.ForeignKey(Cluster, default='1')
+    on_host = models.ForeignKey(Machine, default='1', verbose_name=_('On Host'))
+    on_cluster = models.ForeignKey(Cluster, default='1', verbose_name=_('On Cluster'))
     #
     os_ip_wan = models.GenericIPAddressField(_('IP_WAN'), null=True, blank=True)
     os_ip_lan = models.GenericIPAddressField(_('IP_LAN'))
-    os = models.ForeignKey(OSType, default='1')
+    os_type = models.ForeignKey(OSType, default='1', verbose_name=_('OS Type'))
     os_user_root = models.CharField(_('Admin'), max_length=20)
     os_pass_root = models.CharField(_('Password of Admin'), max_length=40)
     os_user_guest = models.CharField(_('Guest'), max_length=20, null=True, blank=True)
@@ -167,7 +168,7 @@ class Vm(models.Model):
     is_online = models.BooleanField(_('Is Online?'), default=False)
     #
     app_desc = models.CharField(_('App Description'), max_length=40, default='NOT_IN_USE')
-    client = models.ForeignKey(EndUser, default='1')
+    client = models.ForeignKey(Client, default='1', verbose_name=_('Client'))
     mount_point = models.CharField(_('Mount Point'), max_length=40, null=True, blank=True)
     desc = models.CharField(_('VM Description'), max_length=100, default='Extra info.')
     #
