@@ -8,7 +8,7 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Vendor, DeviceType, IDCInfo, OSType, Client, Cluster, Machine, Vm
+from .models import Vendor, DeviceType, IDCInfo, OSType, EndUser, Cluster, Machine, Vm
 
 # Register your models here.
 
@@ -29,7 +29,7 @@ class OSTypeAdmin(admin.ModelAdmin):
     search_fields = ['tag']
 
 
-class ClientAdmin(admin.ModelAdmin):
+class EndUserAdmin(admin.ModelAdmin):
     search_fields = ['username']
 
 
@@ -43,7 +43,7 @@ class MachineAdmin(admin.ModelAdmin):
         (_('OS'), {'fields': ['os_ip_wan1', 'os_ip_wan2', 'os_ip_lan_mgmt', 'os_ip_lan_stor',
                               'os_ip_lan_biz', 'os_type', 'os_user_root', 'os_pass_root',
                               'os_user_guest', 'os_pass_guest']}),
-        (_('APP'), {'fields': ['app_desc', 'client']}),
+        (_('APP'), {'fields': ['app_desc', 'operator']}),
         (_('Status'), {'fields': ['is_monited', 'is_online', 'is_v_host']}),
         (_('Device'), {'fields': ['device_sn', 'vendor', 'model', 'device_ipmi_ip',
                                'device_ipmi_user', 'device_ipmi_pass', 'device_raid_level']}),
@@ -52,10 +52,10 @@ class MachineAdmin(admin.ModelAdmin):
         (_('Date information'), {'fields': ['dt_created', 'dt_destroyed']}),
     ]
     list_display = ('hostname', 'cluster', 'idc', 'os_ip_wan1', 'os_ip_lan_mgmt', 'os_type',
-                    'app_desc', 'client',
+                    'app_desc', 'operator',
                     'model', 'device_ipmi_ip', 'device_raid_level',
                     'is_monited', 'is_online', 'is_v_host')
-    list_filter = ['model', 'device_raid_level', 'idc', 'os_type', 'client', 'dt_created']
+    list_filter = ['model', 'device_raid_level', 'idc', 'os_type', 'operator', 'dt_created']
     search_fields = ['hostname', 'device_ipmi_ip', 'os_ip_wan1', 'os_ip_lan_mgmt', 'app_desc']
 
 
@@ -65,12 +65,12 @@ class VmAdmin(admin.ModelAdmin):
         (_('OS'), {'fields': ['os_ip_wan', 'os_ip_lan', 'os_type', 'os_user_root', 'os_pass_root',
                               'os_user_guest', 'os_pass_guest']}),
         (_('Status'), {'fields': ['is_monited', 'is_online']}),
-        (_('APP'), {'fields': ['app_desc', 'client', 'mount_point', 'desc']}),
+        (_('APP'), {'fields': ['app_desc', 'operator', 'mount_point', 'desc']}),
         (_('Date information'), {'fields': ['dt_created', 'dt_destroyed']}),
     ]
     list_display = ('hostname', 'on_host', 'on_cluster', 'os_ip_wan', 'os_ip_lan', 'os_type', 'app_desc',
-                    'client', 'is_monited', 'is_online', 'was_added_recently')
-    list_filter = ['on_host', 'os_type', 'client', 'dt_created']
+                    'operator', 'is_monited', 'is_online', 'was_added_recently')
+    list_filter = ['on_host', 'os_type', 'operator', 'dt_created']
     search_fields = ['hostname', 'os_ip_wan', 'os_ip_lan', 'app_desc']
 
 
@@ -78,7 +78,7 @@ admin.site.register(Vendor, VendorAdmin)
 admin.site.register(DeviceType, DeviceTypeAdmin)
 admin.site.register(IDCInfo, IDCInfoAdmin)
 admin.site.register(OSType, OSTypeAdmin)
-admin.site.register(Client, ClientAdmin)
+admin.site.register(EndUser, EndUserAdmin)
 admin.site.register(Cluster, ClusterAdmin)
 admin.site.register(Machine, MachineAdmin)
 admin.site.register(Vm, VmAdmin)

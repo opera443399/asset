@@ -73,7 +73,7 @@ class OSType(models.Model):
         verbose_name_plural = _('OS Type')
 
 
-class Client(models.Model):
+class EndUser(models.Model):
     username = models.CharField(_('Username'), max_length=20)
     department = models.CharField(_('Department'), max_length=20)
 
@@ -81,8 +81,8 @@ class Client(models.Model):
         return self.username
 
     class Meta:
-        verbose_name = _('Client')
-        verbose_name_plural = _('Client')
+        verbose_name = _('EndUser')
+        verbose_name_plural = _('EndUser')
 
 
 class Cluster(models.Model):
@@ -113,7 +113,7 @@ class Machine(models.Model):
     os_pass_guest = models.CharField(_('Password of Guest'), max_length=40, null=True, blank=True)
     #
     app_desc = models.CharField(_('App Description'), max_length=40, default='NOT_IN_USE')
-    client = models.ForeignKey(Client, default='1', verbose_name=_('Client'))
+    operator = models.ForeignKey(EndUser, default='1', verbose_name=_('EndUser'))
     #
     is_monited = models.BooleanField(_('Is Monited?'), default=False)
     is_online = models.BooleanField(_('Is Online?'), default=False)
@@ -168,7 +168,7 @@ class Vm(models.Model):
     is_online = models.BooleanField(_('Is Online?'), default=False)
     #
     app_desc = models.CharField(_('App Description'), max_length=40, default='NOT_IN_USE')
-    client = models.ForeignKey(Client, default='1', verbose_name=_('Client'))
+    operator = models.ForeignKey(EndUser, default='1', verbose_name=_('EndUser'))
     mount_point = models.CharField(_('Mount Point'), max_length=40, null=True, blank=True)
     desc = models.CharField(_('VM Description'), max_length=100, default='Extra info.')
     #
