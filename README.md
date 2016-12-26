@@ -1,27 +1,44 @@
-说明文件：django project "IDC" 在centos7下的部署
+说明文件：django project "asset" 在centos7下的部署
 =======================================
-2016/12/13
+2016/12/26
 
-####IDC 是利用django后台实现的简易资源管理平台
+####asset 是利用django后台实现的简易资源管理平台
 
 prepare
 -------
-1. pip+django ::
+1. pip+django+mysql ::
 
         主要依赖：
         [root@tvm001 ~]# yum install python-pip
-        [root@tvm001 ~]# pip install django
+        [root@tvm001 ~]# pip install -r requirements.txt 
+        或者：
+        [root@tvm001 ~]# pip install django MySQL-python
+        （当然，也可以不用mysql，仅使用sqlite来测试）
 
 2. 调整 project setting ::
 
-        [root@tvm001 ~]# cd /opt
+        [root@tvm001 ~]# mkdir /opt/asset/latest && cd /opt/asset/latest
         直接克隆这个项目
-        [root@tvm001 opt]# git clone git项目来源
-        [root@tvm001 opt]# cd idc/www/
+        [root@tvm001 latest]# git clone git项目来源
+        [root@tvm001 latest]# cd www/
 
 
 3. 试着运行一下 ::
 
+        先调整db配置（可以注释掉mysql相关的配置，仅使用sqlite来测试）：
+        [root@tvm001 www]# vim www/settings.py
+        DATABASES = {
+            'default': {
+                #'ENGINE': 'django.db.backends.sqlite3',
+                #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'asset',
+                'USER': 'asset_rw',
+                'PASSWORD': 'xxx',
+                'HOST': '127.0.0.1',
+                'PORT': '3306',
+            }
+        }
         初始化db：
         [root@tvm001 www]# python manage.py migrate
         创建root：
@@ -29,8 +46,8 @@ prepare
         初始化app库：
         [root@tvm001 www]# python manage.py makemigrations hosts
         [root@tvm001 www]# python manage.py migrate
-        
-        django默认是启用了 DEBUG 选项，但 IDC 这个项目的代码已经关闭 DEBUG 选项，并设置了一下内容：
+
+        django默认是启用了 DEBUG 选项，但 asset 这个项目的代码已经关闭 DEBUG 选项，并设置了一下内容：
         ALLOWED_HOSTS
         STATIC_URL STATIC_ROOT
         MEDIA_URL MEDIA_ROOT
@@ -109,13 +126,13 @@ prepare
         ]
 
 
-        维护翻译文件，在每个 apps 目录下有一个 locale 目录，以 IDC 为例：
+        维护翻译文件，在每个 apps 目录下有一个 locale 目录，以 asset 为例：
         创建或更新：
-        [root@tvm01 IDC]# django-admin makemessages -l zh
+        [root@tvm01 asset]# django-admin makemessages -l zh
         对应的消息文本的路径：locale/zh/LC_MESSAGES/django.po
 
         编译：
-        [root@tvm01 IDC]# django-admin compilemessages
+        [root@tvm01 asset]# django-admin compilemessages
         编译后的文件：locale/zh/LC_MESSAGES/django.mo
 
         最后，重载（reload） web服务即可生效。
@@ -179,15 +196,15 @@ uwsgi+supervisord+nginx
 
         [root@tvm001 www]# cat /etc/supervisor.d/uwsgi.ini
         [program:uwsgi]
-        command=/usr/bin/uwsgi --socket 127.0.0.1:8090 --chdir /opt/idc/www --module www.wsgi
+        command=/usr/bin/uwsgi --socket 127.0.0.1:8090 --chdir /opt/asset/latest/www --module www.wsgi
         user=nobody
         autostart=true
         autorestart=true
-        stdout_logfile=/tmp/idc.stdout.log
-        stderr_logfile=/tmp/idc.stderr.log
+        stdout_logfile=/tmp/asset.stdout.log
+        stderr_logfile=/tmp/asset.stderr.log
 
         注：这里配置了 user，对应的，project的目录也应该是这个用户才能对示例中的本地数据库有读写权限。
-        [root@tvm001 www]# chown nobody:nobody -R /opt/idc/www
+        [root@tvm001 www]# chown nobody:nobody -R /opt/asset/latest/www
 
     6）启动 uwsgi 服务：
 
@@ -211,11 +228,11 @@ uwsgi+supervisord+nginx
             charset utf-8;
             
             location /static {
-                alias /opt/idc/www/static;
+                alias /opt/asset/latest/www/static;
             }
             
             location /media {
-                alias /opt/idc/www/media;
+                alias /opt/asset/latest/www/media;
             }
             
             location / {
@@ -236,11 +253,11 @@ uwsgi+supervisord+nginx
             charset utf-8;
             
             location /static {
-                alias /opt/idc/www/static;
+                alias /opt/asset/latest/www/static;
             }
             
             location /media {
-                alias /opt/idc/www/media;
+                alias /opt/asset/latest/www/media;
             }
             
             location / {

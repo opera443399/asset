@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-###################################
-# @ Django 1.9.1
-# @ 2016-12-19
-# @ pc
-###################################
+#!/bin/env python
+# coding=utf-8
+# ----------------------------------
+# @ 2016/12/22
+# @ PC
+# ----------------------------------
+
 from __future__ import unicode_literals
 
 from django.apps import AppConfig

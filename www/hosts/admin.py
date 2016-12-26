@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-###################################
-# @ Django 1.9.1
-# @ 2016-12-20
-# @ pc
-###################################
+#!/bin/env python
+# coding=utf-8
+# ----------------------------------
+# @ 2016/12/22
+# @ PC
+# ----------------------------------
 
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _

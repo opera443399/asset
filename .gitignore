@@ -86,3 +86,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# IDEA Files
+.idea
+
+# django migration
+migrations/

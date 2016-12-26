@@ -1,8 +1,9 @@
 #!/bin/bash
 # 
-# 2016/2/2
+# 2016/12/26
 
-source_path='/opt/idc'
+# default src path
+source_path='/opt/asset/latest'
 
 function do_f(){
     n=`find "${source_path}/www" ! -user nobody -print |wc -l`
@@ -27,27 +28,29 @@ function do_t(){
 }
 
 function do_r(){
-    supervisorctl status
-    supervisorctl reload
+    /usr/local/bin/supervisorctl status
+    /usr/local/bin/supervisorctl reload
     sleep 2
-    supervisorctl status
+    /usr/local/bin/supervisorctl status
 }
 
 function usage(){
     cat <<_EOF
 
-USAGE: $0 [c|f|r|t] 
+USAGE: $0 [c|f|r|t] [src_path]
 
     c  :     collectstatic
     f  :     chown to nobody and reload
     r  :     reload supervisor
     t  :     test
 
+    src_path : default: ${source_path}
 _EOF
 }
 
 case $1 in
     c|f|r|t)
+        [ -z $2 ] || source_path=$2
         do_$1
         ;;
     *)
