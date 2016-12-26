@@ -126,9 +126,10 @@ prepare
         ]
 
 
-        维护翻译文件，在每个 apps 目录下有一个 locale 目录，以 asset 为例：
+        维护翻译文件，在每个 apps 目录下有一个 locale 目录，以 hosts 这个 app 为例：
         创建或更新：
-        [root@tvm01 asset]# django-admin makemessages -l zh
+        [root@tvm01 www]# cd hosts && mkdir locale
+        [root@tvm01 hosts]# django-admin makemessages -l zh
         对应的消息文本的路径：locale/zh/LC_MESSAGES/django.po
 
         编译：

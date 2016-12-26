@@ -17,6 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.utils.translation import ugettext_lazy as _
+
+
+admin.site.site_header = _('Asset management')
+admin.site.index_title = _('Site admin')
+admin.site.site_title = _('Asset')
 
 
 urlpatterns = [
