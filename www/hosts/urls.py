@@ -1,7 +1,7 @@
 #!/bin/env python
 # coding=utf-8
 # ----------------------------------
-# @ 2016/12/22
+# @ 2016/12/26
 # @ PC
 # ----------------------------------
 
@@ -12,5 +12,5 @@ app_name = 'hosts'
 urlpatterns = [
     #################################### /hosts/xxx
     #
-    #url(r'^$', views.hosts_list, name='hosts_list'),
+    url(r'^$', views.show_index, name='show_index'),
 ]
