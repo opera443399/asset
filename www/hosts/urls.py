@@ -12,5 +12,5 @@ urlpatterns = [
     #################################### /hosts/xxx
     #
     url(r'^$', views.show_index, name='show_index'),
-    url(r'^load$', views.load_data_vms, name='load_data_vms'),
+    url(r'^load/vms$', views.load_data_vms, name='load_data_vms'),
 ]
