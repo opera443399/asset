@@ -7,7 +7,7 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Vendor, DeviceType, IDCInfo, OSType, EndUser, Cluster, Machine, Vm
+from .models import Vendor, DeviceType, InstanceType, IDCInfo, OSType, EndUser, Cluster, Machine, Vm
 
 # Register your models here.
 
@@ -18,13 +18,18 @@ class VendorAdmin(admin.ModelAdmin):
 
 
 class DeviceTypeAdmin(admin.ModelAdmin):
-    list_display = ('type_of', 'cpu', 'memory', 'disk_ssd', 'disk_sas', 'disk_sata',
+    list_display = ('tag', 'cpu', 'memory', 'disk_ssd', 'disk_sas', 'disk_sata',
                     'nic', 'psu', 'raid_card', 'desc')
-    search_fields = ['type_of']
+    search_fields = ['tag']
+
+
+class InstanceTypeAdmin(admin.ModelAdmin):
+    list_display = ('tag', 'cpu', 'memory', 'desc')
+    search_fields = ['tag']
 
 
 class IDCInfoAdmin(admin.ModelAdmin):
-    list_display = ('tag', 'name', 'location')
+    list_display = ('tag', 'name', 'location', 'desc')
     search_fields = ['tag', 'name']
 
 
@@ -74,14 +79,16 @@ class VmAdmin(admin.ModelAdmin):
         (_('APP'), {'fields': ['app_desc', 'operator', 'mount_point', 'desc']}),
         (_('Date information'), {'fields': ['dt_created']}),
     ]
-    list_display = ('hostname', 'on_host', 'on_cluster', 'os_ip_wan', 'os_ip_lan', 'os_type', 'app_desc',
-                    'operator', 'is_monited', 'is_online', 'was_added_recently')
-    list_filter = ['on_host', 'os_type', 'operator', 'dt_created']
+    list_display = ('hostname', 'on_host', 'on_cluster', 'os_ip_wan', 'os_ip_lan', 'os_type',
+                    'app_desc', 'operator', 'instance_type', 'mount_point',
+                    'is_monited', 'is_online', 'was_added_recently')
+    list_filter = ['on_host', 'os_type', 'operator', 'instance_type', 'dt_created']
     search_fields = ['hostname', 'os_ip_wan', 'os_ip_lan', 'app_desc']
 
 
 admin.site.register(Vendor, VendorAdmin)
 admin.site.register(DeviceType, DeviceTypeAdmin)
+admin.site.register(InstanceType, InstanceTypeAdmin)
 admin.site.register(IDCInfo, IDCInfoAdmin)
 admin.site.register(OSType, OSTypeAdmin)
 admin.site.register(EndUser, EndUserAdmin)
