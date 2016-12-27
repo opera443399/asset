@@ -141,6 +141,7 @@ class Machine(models.Model):
     device_ipmi_user = models.CharField(_('IPMI User'), max_length=20, default='root')
     device_ipmi_pass = models.CharField(_('IPMI Password'), max_length=40, default='calvin')
     device_raid_level = models.CharField(_('RAID'), max_length=10, default='5')
+    desc = models.CharField(_('Description'), max_length=40, default='Extra info.')
     #
     idc = models.ForeignKey(IDCInfo, default='1', verbose_name=_('IDC'))
     idc_rack = models.CharField(_('IDC Rack No.'), max_length=10, default='A01')
