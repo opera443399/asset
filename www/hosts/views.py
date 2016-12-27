@@ -32,8 +32,8 @@ def load_data_hosts(request):
             if line.startswith('#'):
                 continue
             # parse csv fields
+            hostname = 'Empty Line'
             try:
-                hostname = 'Empty Line'
                 hostname, cluster, os_ip_wan1, os_ip_lan_mgmt, os_pass_root, os_pass_guest, app_desc, os_type, \
                     device_sn, model, device_ipmi_ip, device_ipmi_pass, device_raid_level, idc, idc_rack, \
                     idc_rack_h, asset_no, operator = line.strip('\n').split(',')
@@ -76,9 +76,8 @@ def load_data_hosts(request):
                 host_status[hostname] = context
                 continue
 
-
     msgs = ''
-    for k,v in sorted(host_status.items()):
+    for k, v in sorted(host_status.items()):
         msgs += '<br/>{0} -> <font color="red">{1}</font>'.format(k, v)
     if not msgs:
         msgs = 'no data!'
@@ -95,13 +94,11 @@ def load_data_vms(request):
     f_data = "{0}{1}{2}".format(os.getcwd(), os.sep, 'vms.csv')
     with open(f_data) as f:
         for line in f:
-            if not line:
-                continue
             if line.startswith('#'):
                 continue
             # parse csv fields
+            hostname = 'Empty Line'
             try:
-                hostname = 'Empty Line'
                 hostname, on_host, os_ip_lan, os_pass_root, os_pass_guest, \
                     app_desc, os_type, operator = line.strip('\n').split(',')
 
@@ -130,10 +127,8 @@ def load_data_vms(request):
                 vm_status[hostname] = context
                 continue
 
-
-
     msgs = ''
-    for k,v in sorted(vm_status.items()):
+    for k, v in sorted(vm_status.items()):
         msgs += '<br/>{0} -> <font color="red">{1}</font>'.format(k, v)
     if not msgs:
         msgs = 'no data!'
