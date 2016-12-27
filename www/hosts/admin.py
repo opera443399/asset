@@ -1,7 +1,6 @@
-#!/bin/env python
 # coding=utf-8
 # ----------------------------------
-# @ 2016/12/22
+# @ 2016/12/27
 # @ PC
 # ----------------------------------
 
@@ -14,26 +13,33 @@ from .models import Vendor, DeviceType, IDCInfo, OSType, EndUser, Cluster, Machi
 
 
 class VendorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'desc')
     search_fields = ['name']
 
 
 class DeviceTypeAdmin(admin.ModelAdmin):
+    list_display = ('type_of', 'cpu', 'memory', 'disk_ssd', 'disk_sas', 'disk_sata',
+                    'nic', 'psu', 'raid_card', 'desc')
     search_fields = ['type_of']
 
 
 class IDCInfoAdmin(admin.ModelAdmin):
-    search_fields = ['tag']
+    list_display = ('tag', 'name', 'location')
+    search_fields = ['tag', 'name']
 
 
 class OSTypeAdmin(admin.ModelAdmin):
+    list_display = ('tag', 'desc')
     search_fields = ['tag']
 
 
 class EndUserAdmin(admin.ModelAdmin):
-    search_fields = ['username']
+    list_display = ('username', 'fullname', 'department')
+    search_fields = ['username', 'fullname', 'department']
 
 
 class ClusterAdmin(admin.ModelAdmin):
+    list_display = ('name', 'desc')
     search_fields = ['name']
 
 
@@ -49,7 +55,7 @@ class MachineAdmin(admin.ModelAdmin):
                                'device_ipmi_user', 'device_ipmi_pass', 'device_raid_level']}),
         (_('IDC Info'), {'fields': ['idc', 'idc_rack', 'idc_rack_h']}),
         (_('Asset'), {'fields': ['asset_no']}),
-        (_('Date information'), {'fields': ['dt_created', 'dt_destroyed']}),
+        (_('Date information'), {'fields': ['dt_created']}),
     ]
     list_display = ('hostname', 'cluster', 'idc', 'os_ip_wan1', 'os_ip_lan_mgmt', 'os_type',
                     'app_desc', 'operator',
@@ -66,7 +72,7 @@ class VmAdmin(admin.ModelAdmin):
                               'os_user_guest', 'os_pass_guest']}),
         (_('Status'), {'fields': ['is_monited', 'is_online']}),
         (_('APP'), {'fields': ['app_desc', 'operator', 'mount_point', 'desc']}),
-        (_('Date information'), {'fields': ['dt_created', 'dt_destroyed']}),
+        (_('Date information'), {'fields': ['dt_created']}),
     ]
     list_display = ('hostname', 'on_host', 'on_cluster', 'os_ip_wan', 'os_ip_lan', 'os_type', 'app_desc',
                     'operator', 'is_monited', 'is_online', 'was_added_recently')

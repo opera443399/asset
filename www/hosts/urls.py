@@ -1,7 +1,6 @@
-#!/bin/env python
 # coding=utf-8
 # ----------------------------------
-# @ 2016/12/26
+# @ 2016/12/27
 # @ PC
 # ----------------------------------
 
@@ -13,4 +12,5 @@ urlpatterns = [
     #################################### /hosts/xxx
     #
     url(r'^$', views.show_index, name='show_index'),
+    url(r'^load$', views.load_data_vms, name='load_data_vms'),
 ]

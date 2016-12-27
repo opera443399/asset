@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-26 15:05+0800\n"
+"POT-Creation-Date: 2016-12-27 13:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,280 +16,288 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: hosts/admin.py:43 hosts/admin.py:65
+#: admin.py:50 admin.py:72
 msgid "OS"
 msgstr "操作系统"
 
-#: hosts/admin.py:46 hosts/admin.py:68
+#: admin.py:53 admin.py:75
 msgid "APP"
 msgstr "应用"
 
-#: hosts/admin.py:47 hosts/admin.py:67
+#: admin.py:54 admin.py:74
 msgid "Status"
 msgstr "状态"
 
-#: hosts/admin.py:48
+#: admin.py:55
 msgid "Device"
 msgstr "设备"
 
-#: hosts/admin.py:50
+#: admin.py:57
 msgid "IDC Info"
 msgstr "IDC信息"
 
-#: hosts/admin.py:51
+#: admin.py:58
 msgid "Asset"
 msgstr "资产"
 
-#: hosts/admin.py:52 hosts/admin.py:69
+#: admin.py:59 admin.py:76
 msgid "Date information"
 msgstr "日期"
 
-#: hosts/models.py:20
+#: models.py:20
 msgid "Vendor Name"
 msgstr "厂商名称"
 
-#: hosts/models.py:21
+#: models.py:21
 msgid "Vendor Description"
 msgstr "厂商描述"
 
-#: hosts/models.py:27 hosts/models.py:28
+#: models.py:27 models.py:28
 msgid "Vendors"
 msgstr "厂商"
 
-#: hosts/models.py:32
+#: models.py:32
 msgid "Host Type"
 msgstr "机型"
 
-#: hosts/models.py:33
+#: models.py:33
 msgid "Host CPU"
 msgstr "CPU"
 
-#: hosts/models.py:34
+#: models.py:34
 msgid "Host Memory"
 msgstr "内存"
 
-#: hosts/models.py:35
+#: models.py:35
 msgid "Host Disk SSD"
 msgstr "磁盘（SSD）"
 
-#: hosts/models.py:36
+#: models.py:36
 msgid "Host Disk SAS"
 msgstr "磁盘（SAS）"
 
-#: hosts/models.py:37
+#: models.py:37
 msgid "Host Disk SATA"
 msgstr "磁盘（SATA）"
 
-#: hosts/models.py:38
+#: models.py:38
 msgid "Host NIC Card"
 msgstr "网卡"
 
-#: hosts/models.py:39
+#: models.py:39
 msgid "Host PSU"
 msgstr "电源"
 
-#: hosts/models.py:40
+#: models.py:40
 msgid "Device RAID Card"
 msgstr "RAID卡"
 
-#: hosts/models.py:41
+#: models.py:41
 msgid "Device Description"
 msgstr "设备描述"
 
-#: hosts/models.py:47 hosts/models.py:48
+#: models.py:47 models.py:48
 msgid "Device Type"
 msgstr "设备类别"
 
-#: hosts/models.py:52
+#: models.py:52
 msgid "IDC Tag"
 msgstr "IDC标签"
 
-#: hosts/models.py:53
+#: models.py:53
 msgid "IDC Fullname"
 msgstr "IDC全称"
 
-#: hosts/models.py:54
+#: models.py:54
 msgid "IDC Location"
 msgstr "IDC位置"
 
-#: hosts/models.py:60 hosts/models.py:61 hosts/models.py:130
+#: models.py:60 models.py:61 models.py:131
 msgid "IDC"
 msgstr "数据中心"
 
-#: hosts/models.py:65
+#: models.py:65
 msgid "OS Tag"
 msgstr "OS标签"
 
-#: hosts/models.py:66
+#: models.py:66
 msgid "OS Description"
 msgstr "OS描述"
 
-#: hosts/models.py:72 hosts/models.py:73 hosts/models.py:109
-#: hosts/models.py:161
+#: models.py:72 models.py:73 models.py:110 models.py:162
 msgid "OS Type"
 msgstr "操作系统"
 
-#: hosts/models.py:77
+#: models.py:77
 msgid "Username"
 msgstr "用户名"
 
-#: hosts/models.py:78
+#: models.py:78
+msgid "fullname"
+msgstr "姓名"
+
+#: models.py:79
 msgid "Department"
 msgstr "部门"
 
-#: hosts/models.py:84 hosts/models.py:85 hosts/models.py:116
-#: hosts/models.py:171
+#: models.py:85 models.py:86 models.py:117 models.py:172
 msgid "EndUser"
 msgstr "使用者"
 
-#: hosts/models.py:89
+#: models.py:90
 msgid "Cluster Name"
 msgstr "集群名称"
 
-#: hosts/models.py:90
+#: models.py:91
 msgid "Cluster Description"
 msgstr "集群描述"
 
-#: hosts/models.py:96 hosts/models.py:97 hosts/models.py:102
+#: models.py:97 models.py:98 models.py:103
 msgid "Cluster"
 msgstr "集群"
 
-#: hosts/models.py:101 hosts/models.py:155
+#: models.py:102 models.py:156
 msgid "hostname"
 msgstr "主机名"
 
-#: hosts/models.py:104
+#: models.py:105
 msgid "IP_WAN1"
 msgstr "外网IP1"
 
-#: hosts/models.py:105
+#: models.py:106
 msgid "IP_WAN2"
 msgstr "外网IP2"
 
-#: hosts/models.py:106
+#: models.py:107
 msgid "IP_LAN_MGMT"
 msgstr "管理IP"
 
-#: hosts/models.py:107
+#: models.py:108
 msgid "IP_LAN_STOR"
 msgstr "存储IP"
 
-#: hosts/models.py:108
+#: models.py:109
 msgid "IP_LAN_BIZ"
 msgstr "业务IP"
 
-#: hosts/models.py:110 hosts/models.py:162
+#: models.py:111 models.py:163
 msgid "Admin"
 msgstr "管理员帐号"
 
-#: hosts/models.py:111 hosts/models.py:163
+#: models.py:112 models.py:164
 msgid "Password of Admin"
 msgstr "管理员密码"
 
-#: hosts/models.py:112 hosts/models.py:164
+#: models.py:113 models.py:165
 msgid "Guest"
 msgstr "用户帐号"
 
-#: hosts/models.py:113 hosts/models.py:165
+#: models.py:114 models.py:166
 msgid "Password of Guest"
 msgstr "用户密码"
 
-#: hosts/models.py:115 hosts/models.py:170
+#: models.py:116 models.py:171
 msgid "App Description"
 msgstr "应用描述"
 
-#: hosts/models.py:118 hosts/models.py:167
+#: models.py:119 models.py:168
 msgid "Is Monited?"
 msgstr "已监控"
 
-#: hosts/models.py:119 hosts/models.py:168
+#: models.py:120 models.py:169
 msgid "Is Online?"
 msgstr "已上线"
 
-#: hosts/models.py:120
+#: models.py:121
 msgid "Is Virt Host?"
 msgstr "是宿主机？"
 
-#: hosts/models.py:122
+#: models.py:123
 msgid "SN"
 msgstr "序列号"
 
-#: hosts/models.py:123
+#: models.py:124
 msgid "Vendor"
 msgstr "厂商"
 
-#: hosts/models.py:124
+#: models.py:125
 msgid "Model"
 msgstr "机型"
 
-#: hosts/models.py:125
+#: models.py:126
 msgid "IPMI IP"
 msgstr ""
 
-#: hosts/models.py:126
+#: models.py:127
 msgid "IPMI User"
 msgstr "IPMI帐号"
 
-#: hosts/models.py:127
+#: models.py:128
 msgid "IPMI Password"
 msgstr "IPMI密码"
 
-#: hosts/models.py:128
+#: models.py:129
 msgid "RAID"
 msgstr "RAID"
 
-#: hosts/models.py:131
+#: models.py:132
 msgid "IDC Rack No."
 msgstr "机柜编号"
 
-#: hosts/models.py:132
+#: models.py:133
 msgid "IDC Rack Height"
 msgstr "在机柜中的高度"
 
-#: hosts/models.py:134
+#: models.py:135
 msgid "Asset No."
 msgstr "资产编号"
 
-#: hosts/models.py:135 hosts/models.py:175
+#: models.py:136 models.py:176
 msgid "When Created?"
 msgstr "何时创建？"
 
-#: hosts/models.py:136 hosts/models.py:176
-msgid "When Destroyed?"
-msgstr "何时销毁？"
+#: models.py:137 models.py:177
+msgid "When Modified?"
+msgstr "何时修改？"
 
-#: hosts/models.py:142 hosts/models.py:143
+#: models.py:143 models.py:144
 msgid "Machines"
 msgstr "物理机"
 
-#: hosts/models.py:151 hosts/models.py:190
+#: models.py:152 models.py:191
 msgid "Added recently?"
 msgstr "最近新增？"
 
-#: hosts/models.py:156
+#: models.py:157
 msgid "On Host"
 msgstr "宿主机"
 
-#: hosts/models.py:157
+#: models.py:158
 msgid "On Cluster"
 msgstr "集群"
 
-#: hosts/models.py:159
+#: models.py:160
 msgid "IP_WAN"
 msgstr "外网IP"
 
-#: hosts/models.py:160
+#: models.py:161
 msgid "IP_LAN"
 msgstr "内网IP"
 
-#: hosts/models.py:172
+#: models.py:173
 msgid "Mount Point"
 msgstr "挂载点"
 
-#: hosts/models.py:173
+#: models.py:174
 msgid "VM Description"
 msgstr "vm备注"
 
-#: hosts/models.py:182 hosts/models.py:183
+#: models.py:183 models.py:184
 msgid "VMs"
 msgstr "虚拟机"
+
+#: views.py:19
+msgid ""
+"a quick way to build a simple idc resource management page via django, do "
+"not use excel."
+msgstr "运维资源管理平台"
