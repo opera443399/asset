@@ -1,10 +1,11 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2016/12/27
+# @ 2016/12/29
 # @ PC
 # ----------------------------------
 
 from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
 
 from django.db import models
 from django.utils import timezone
@@ -15,6 +16,7 @@ import datetime
 # Create your models here.
 
 
+@python_2_unicode_compatible
 class Vendor(models.Model):
     name = models.CharField(_('Name'), max_length=20, default='NULL')
     desc = models.CharField(_('Description'), max_length=100, default='Extra info.')
@@ -27,6 +29,7 @@ class Vendor(models.Model):
         verbose_name_plural = _('Vendors')
 
 
+@python_2_unicode_compatible
 class DeviceType(models.Model):
     tag = models.CharField(_('Tag'), max_length=10, default='NULL')
     cpu = models.CharField(_('CPU'), max_length=20, default='NULL')
@@ -47,6 +50,7 @@ class DeviceType(models.Model):
         verbose_name_plural = _('Device Type')
 
 
+@python_2_unicode_compatible
 class InstanceType(models.Model):
     tag = models.CharField(_('Tag'), max_length=10, default='NULL')
     cpu = models.IntegerField(_('CPU(Core)'), default=1)
@@ -61,6 +65,7 @@ class InstanceType(models.Model):
         verbose_name_plural = _('Instance Type')
 
 
+@python_2_unicode_compatible
 class IDCInfo(models.Model):
     tag = models.CharField(_('Tag'), max_length=10, default='NULL')
     name = models.CharField(_('Name'), max_length=20, default='NULL')
@@ -75,6 +80,7 @@ class IDCInfo(models.Model):
         verbose_name_plural = _('IDC')
 
 
+@python_2_unicode_compatible
 class OSType(models.Model):
     tag = models.CharField(_('Tag'), max_length=20, default='NULL')
     desc = models.CharField(_('Description'), max_length=40, default='Extra info.')
@@ -87,6 +93,7 @@ class OSType(models.Model):
         verbose_name_plural = _('OS Type')
 
 
+@python_2_unicode_compatible
 class EndUser(models.Model):
     username = models.CharField(_('Username'), max_length=20, default='NULL')
     fullname = models.CharField(_('Fullname'), max_length=20, default='NULL')
@@ -100,6 +107,7 @@ class EndUser(models.Model):
         verbose_name_plural = _('EndUser')
 
 
+@python_2_unicode_compatible
 class Cluster(models.Model):
     name = models.CharField(_('Name'), max_length=20, default='NULL')
     desc = models.CharField(_('Description'), max_length=40, default='Extra info.')
@@ -112,6 +120,7 @@ class Cluster(models.Model):
         verbose_name_plural = _('Cluster')
 
 
+@python_2_unicode_compatible
 class Machine(models.Model):
     hostname = models.CharField(_('Hostname'), max_length=100, unique=True)
     cluster = models.ForeignKey(Cluster, default='1', verbose_name=_('Cluster'))
@@ -167,6 +176,7 @@ class Machine(models.Model):
     was_added_recently.short_description = _('Added recently?')
 
 
+@python_2_unicode_compatible
 class Vm(models.Model):
     hostname = models.CharField(_('Hostname'), max_length=100, unique=True)
     on_host = models.ForeignKey(Machine, default='1', verbose_name=_('On Host'))
