@@ -80,9 +80,9 @@ class VmAdmin(admin.ModelAdmin):
         (_('Date information'), {'fields': ['dt_created']}),
     ]
     list_display = ('hostname', 'on_host', 'on_cluster', 'os_ip_wan', 'os_ip_lan', 'os_type',
-                    'app_desc', 'operator', 'instance_type', 'mount_point',
+                    'app_desc', 'operator', 'instance_type',
                     'is_monited', 'is_online', 'was_added_recently')
-    list_filter = ['on_host', 'os_type', 'operator', 'instance_type', 'dt_created']
+    list_filter = ['on_host', 'on_cluster', 'os_type', 'operator', 'instance_type', 'dt_created']
     search_fields = ['hostname', 'os_ip_wan', 'os_ip_lan', 'app_desc']
 
 

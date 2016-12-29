@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2016/12/27
+# @ 2016/12/29
 # @ PC
 # ----------------------------------
 
@@ -26,6 +26,7 @@ def load_data_hosts(request):
             cluster, model, os_type, operator, idc
     """
     host_status = {}
+    import_count_ok = import_count_fail = 0
     f_data = "{0}{1}{2}".format(os.getcwd(), os.sep, 'hosts.csv')
     with open(f_data) as f:
         for line in f:
@@ -71,9 +72,11 @@ def load_data_hosts(request):
                                          dt_created=dt_now
                                          )
                 host_status[hostname] = 'ok.'
+                import_count_ok += 1
             except Exception as e:
                 context = 'error: {0}'.format(e)
                 host_status[hostname] = context
+                import_count_fail += 1
                 continue
 
     msgs = ''
@@ -81,7 +84,9 @@ def load_data_hosts(request):
         msgs += '<br/>{0} -> <font color="red">{1}</font>'.format(k, v)
     if not msgs:
         msgs = 'no data!'
-    context = '[*] result for vms: {0}'.format(msgs)
+    else:
+        msgs += '<br/><br/>success: {0}, failure: {1}.'.format(import_count_ok, import_count_fail)
+    context = '[*] import result: {0}'.format(msgs)
     return HttpResponse(context)
 
 
@@ -90,7 +95,8 @@ def load_data_vms(request):
         tips: you have to prepare something before this step:
             host, os_type, operator
     """
-    vm_status = {}
+    import_status = {}
+    import_count_ok = import_count_fail = 0
     f_data = "{0}{1}{2}".format(os.getcwd(), os.sep, 'vms.csv')
     with open(f_data) as f:
         for line in f:
@@ -99,11 +105,12 @@ def load_data_vms(request):
             # parse csv fields
             hostname = 'Empty Line'
             try:
-                hostname, on_host, os_ip_lan, os_pass_root, os_pass_guest, \
+                hostname, on_host, on_cluster, os_ip_wan, os_ip_lan, os_pass_root, os_pass_guest, \
                     app_desc, os_type, operator = line.strip('\n').split(',')
 
                 # objects for ForeignKey
                 obj_host = Machine.objects.get(hostname=on_host)
+                obj_cluster = Cluster.objects.get(name=on_cluster)
                 obj_os_type = OSType.objects.get(tag=os_type)
                 obj_operator = EndUser.objects.get(username=operator)
                 dt_now = timezone.now()
@@ -111,6 +118,8 @@ def load_data_vms(request):
                 # import data to db
                 Vm.objects.get_or_create(hostname=hostname,
                                          on_host=obj_host,
+                                         on_cluster=obj_cluster,
+                                         os_ip_wan=os_ip_wan,
                                          os_ip_lan=os_ip_lan,
                                          os_pass_root=os_pass_root,
                                          os_pass_guest=os_pass_guest,
@@ -121,16 +130,20 @@ def load_data_vms(request):
                                          operator=obj_operator,
                                          dt_created=dt_now
                                          )
-                vm_status[hostname] = 'ok.'
+                import_status[hostname] = 'ok.'
+                import_count_ok += 1
             except Exception as e:
                 context = 'error: {0}'.format(e)
-                vm_status[hostname] = context
+                import_status[hostname] = context
+                import_count_fail += 1
                 continue
 
     msgs = ''
-    for k, v in sorted(vm_status.items()):
+    for k, v in sorted(import_status.items()):
         msgs += '<br/>{0} -> <font color="red">{1}</font>'.format(k, v)
     if not msgs:
         msgs = 'no data!'
-    context = '[*] result for vms: {0}'.format(msgs)
+    else:
+        msgs += '<br/><br/>success: {0}, failure: {1}.'.format(import_count_ok, import_count_fail)
+    context = '[*] import result: {0}'.format(msgs)
     return HttpResponse(context)
