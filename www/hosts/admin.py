@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2016/12/29
+# @ 2017/1/5
 # @ PC
 # ----------------------------------
 
@@ -72,7 +72,7 @@ class MachineAdmin(admin.ModelAdmin):
 
 class VmAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['hostname', 'on_host', 'on_cluster']}),
+        (None, {'fields': ['hostname', 'on_host', 'on_cluster', 'instance_type']}),
         (_('OS'), {'fields': ['os_ip_wan', 'os_ip_lan', 'os_type', 'os_user_root', 'os_pass_root',
                               'os_user_guest', 'os_pass_guest']}),
         (_('Status'), {'fields': ['is_monited', 'is_online']}),
