@@ -4,6 +4,7 @@
 
 ####asset 是利用django后台实现的简易资源管理平台
 
+
 prepare
 -------
 1. pip+django+mysql ::
@@ -161,6 +162,18 @@ prepare
         编辑 apps.py，调整配置文件如下所示：
         [root@tvm01 www]# vim www/accounts/apps.py
         IS_NEW_USER_NEED_VERIFY_BY_EMAIL = True
+
+
+
+deploy(execute shell with jenkins for exp)
+----------------------
+1. 部署 ::
+
+        [root@tvm001 asset]# pwd
+        /opt/src/asset
+        [root@tvm001 asset]# ls
+        ctl.sh  jenkins.sh  README.md  requirements.txt  www
+        [root@tvm001 asset]# sh jenkins.sh 
 
 
 
