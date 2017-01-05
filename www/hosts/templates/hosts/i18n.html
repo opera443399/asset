@@ -1,0 +1,21 @@
+{% load i18n %}
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-10 col-sm-11 text-right">
+            <form class="form-inline" role="form" id="form-language" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <div class="form-group">
+                    <select class="form-control" id="select-language" name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                            <option value="en" selected="selected">{% trans 'Region Select' %}</option>
+                        {% for language in languages %}
+                            <option value="{{ language.code }}">
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <input name="next" type="hidden" value="{{ redirect_to }}" />
+                </div>
+            </form>
+        </div>
+    </div>

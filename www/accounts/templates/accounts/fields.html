@@ -1,0 +1,43 @@
+{% load extra_tags %}
+{% if not field.is_hidden %}
+                {% if field.help_text %}
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8 text-help">
+                        {{ field.help_text|safe }}
+                    </div>
+                </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}" class="col-sm-4 control-label">
+                        {% if field.field.required %}
+                            <span class="span-asterisk">*</span>
+                        {% endif %}
+                        {{ field.label }}
+                    </label>
+                    <div class="col-sm-8">
+                        {% if not field|is_checkbox %}
+                            {{ field|css_class:'form-control' }}
+                        {% endif %}
+                    </div>
+                </div>
+                {% if field.errors %}
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <ul class="ul-errorlist">
+                            {{ field.errors|unordered_list }}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+                {% if field|is_checkbox %}
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        {{ field }}
+                    </div>
+                </div>
+                {% endif %}
+{% else %}
+                <div class="form-group">
+                    {{ field }}
+                </div>
+{% endif %}

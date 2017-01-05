@@ -1,0 +1,9 @@
+{% if form.errors and form.non_field_errors %}
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <ul class="form-errors">
+                            {{ form.non_field_errors|unordered_list }}
+                        </ul>
+                    </div>
+                </div>
+{% endif %}

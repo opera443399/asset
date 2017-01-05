@@ -1,12 +1,14 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2016/12/29
+# @ 2017/1/5
 # @ PC
 # ----------------------------------
 
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 
 import os
 from .models import DeviceType, IDCInfo, OSType, EndUser, Cluster, Machine, Vm
@@ -15,11 +17,17 @@ from .models import DeviceType, IDCInfo, OSType, EndUser, Cluster, Machine, Vm
 
 def show_index(request):
     """test only"""
-    msgs = _('a quick way to build a simple idc resource management page via django, do not use excel.')
-    context = msgs
-    return HttpResponse(context)
+    return render(request, 'hosts/index.html')
 
 
+
+def show_about(request):
+    """test only"""
+    return render(request, 'hosts/about.html')
+
+
+
+@login_required
 def load_data_hosts(request):
     """ exp: how to import a list of hosts to db
         tips: you have to prepare something before this step:
@@ -27,7 +35,8 @@ def load_data_hosts(request):
     """
     host_status = {}
     import_count_ok = import_count_fail = 0
-    f_data = "{0}{1}{2}".format(os.getcwd(), os.sep, 'hosts.csv')
+    ##cwd()/data/hosts/*.csv
+    f_data = "{0}{1}data{1}hosts{1}{2}".format(os.getcwd(), os.sep, 'hosts.csv')
     with open(f_data) as f:
         for line in f:
             if line.startswith('#'):
@@ -90,6 +99,7 @@ def load_data_hosts(request):
     return HttpResponse(context)
 
 
+@login_required
 def load_data_vms(request):
     """ exp: how to import a list of vms to db
         tips: you have to prepare something before this step:
@@ -97,7 +107,8 @@ def load_data_vms(request):
     """
     import_status = {}
     import_count_ok = import_count_fail = 0
-    f_data = "{0}{1}{2}".format(os.getcwd(), os.sep, 'vms.csv')
+    ##cwd()/data/hosts/*.csv
+    f_data = "{0}{1}data{1}hosts{1}{2}".format(os.getcwd(), os.sep, 'vms.csv')
     with open(f_data) as f:
         for line in f:
             if line.startswith('#'):

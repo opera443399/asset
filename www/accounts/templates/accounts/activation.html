@@ -1,0 +1,14 @@
+{% extends "accounts/base.html" %}
+{% load i18n %}
+{% block titles %}{% trans 'Activation' %}{% endblock %}
+{% block content %}
+    <div class="row text-center">
+        <h3><p class="text-success">
+        {% if new_user_is_actived %}
+            {% trans "Your account has been activated, have fun." %}
+        {% else %}
+            {% trans "Failed to activate your account, please contact to web administrator." %}
+        {% endif %}
+        </p></h3>
+    </div>
+{% endblock %}

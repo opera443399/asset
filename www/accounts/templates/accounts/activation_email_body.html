@@ -1,0 +1,3 @@
+{% load i18n %}
+{% trans "Thank you for Registering. To activate you account, please visit:" %}
+{{ protocol }}://{{ website_domain }}{% url 'accounts:activation' uuid token %}

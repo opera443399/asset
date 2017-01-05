@@ -1,0 +1,30 @@
+{% extends "accounts/base.html" %}
+{% load i18n staticfiles %}
+{% block titles %}{% trans 'Login' %}{% endblock %}
+{% block js4this %}
+    <script src="{% static 'accounts/js/accounts-login.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-2 col-sm-3 col-md-4"></div>
+        <div class="col-xs-8 col-sm-6 col-md-4">
+            <form class="form-horizontal" role="form" method="post" action=".">
+                {% csrf_token %}
+                {% if form.errors %}
+                    {% include "accounts/errors.html" %}
+                {% endif %}
+                {% for field in form %}
+                    {% include "accounts/fields.html" %}
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <input type="submit" class="btn btn-primary btn-block" value="{% trans 'Login' %}" />
+                        <a href="{% url 'accounts:registration' %}" class="btn btn-link btn-block">{% trans 'Sign Up' %}</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-4"></div>
+    </div>
+{% endblock %}

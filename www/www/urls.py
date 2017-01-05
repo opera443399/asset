@@ -27,10 +27,12 @@ admin.site.site_title = _('Asset')
 
 urlpatterns = [
     #################################### index
+    #
     url(r'^$', hosts_views.show_index, name='index'),
 
     #################################### apps
     #
+    url(r'^accounts/', include('accounts.urls')),
     url(r'^hosts/', include('hosts.urls')),
 
     #################################### admin

@@ -1,0 +1,34 @@
+{% extends "accounts/base.html" %}
+{% load i18n static %}
+{% block titles %}{% trans 'Profile' %}{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+    <div class="row">
+        <div class="col-xs-2 col-sm-3 col-md-4"></div>
+        <div class="col-xs-8 col-sm-6 col-md-4">
+            <div class="row">
+                <label class="col-sm-6 text-right">{% trans "Nickname:" %}</label>
+                <div class="col-sm-6">
+                    <span>{{ user.player.nickname }}</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="col-sm-6 text-right">{% trans "gender:" %}</label>
+                <div class="col-sm-6">
+                    <span>{{ user.player.gender }}</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="col-sm-6 text-right">{% trans "avator:" %}</label>
+                <div class="col-sm-6">
+                    <img src="{% get_media_prefix %}{{ user.player.avator }}">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-4"></div>
+    </div>
+    {% endif %}
+{% endblock %}

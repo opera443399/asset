@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-05 09:38+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: fields.py:25
+#, python-format
+msgid "Password too short (must be %s characters or more)"
+msgstr "密码长度不符合需求，至少包含 %s 个字符"
+
+#: fields.py:29
+#, python-format
+msgid "Password too long (must be %s characters or less)"
+msgstr "密码长度不符合需求，最多允许 %s 个字符"
+
+#: fields.py:35
+#, python-format
+msgid "Weak password, %s"
+msgstr "弱密码，%s"
+
+#: fields.py:60
+#, python-format
+msgid "must contain %(UPPER)s or more uppercase characters (A-Z)"
+msgstr "请至少包含 %(UPPER)s  个大写字符 (A-Z)"
+
+#: fields.py:65
+#, python-format
+msgid "Must contain %(LOWER)s or more lowercase characters (a-z)"
+msgstr "请至少包含 %(LOWER)s 个小写字符 (a-z)"
+
+#: fields.py:70
+#, python-format
+msgid "must contain %(DIGITS)s or more numbers (0-9)"
+msgstr "请至少包含 %(DIGITS)s 个数字 (0-9)。"
+
+#: fields.py:75
+#, python-format
+msgid "must contain %(PUNCTUATION)s or more symbols"
+msgstr "请至少包含 %(PUNCTUATION)s 个符号。"
+
+#: fields.py:81
+#, python-format
+msgid "Sorry, %s emails are not allowed. Please use a different email address."
+msgstr "抱歉，提供的 email 地址 %s 不可用，请尝试其他 email 地址"
+
+#: fields.py:93
+msgid "Enter a valid email address."
+msgstr "请输入一个有效的 email 地址"
+
+#: forms.py:21
+msgid "A user with that email already exists."
+msgstr "该 email 地址 已被使用"
+
+#: forms.py:22
+msgid "The two password fields didn't match."
+msgstr "两次输入的密码不一致"
+
+#: forms.py:25
+msgid "Email Address"
+msgstr "电子邮箱"
+
+#: forms.py:26
+msgid "Password"
+msgstr "密码"
+
+#: forms.py:28
+msgid "Password Confirmation"
+msgstr "确认密码"
+
+#: forms.py:29
+msgid "Enter the same password as above, for verification."
+msgstr "为了确认密码是否正确，请重复输入一次密码"
+
+#: templates/accounts/activation.html:3
+msgid "Activation"
+msgstr "激活"
+
+#: templates/accounts/activation.html:8
+msgid "Your account has been activated, have fun."
+msgstr "您的账户已经被激活，欢迎使用。"
+
+#: templates/accounts/activation.html:10
+msgid "Failed to activate your account, please contact to web administrator."
+msgstr "您的账户激活失败，请联系本站管理员。"
+
+#: templates/accounts/activation_email_body.html:2
+msgid "Thank you for Registering. To activate you account, please visit:"
+msgstr "谢谢您注册为本站会员。请访问这里以激活您的账户："
+
+#: templates/accounts/activation_email_subject.html:2
+msgid "Account activation from website: "
+msgstr "激活账户邮件，来自："
+
+#: templates/accounts/base.html:36
+msgid "Authantication System"
+msgstr "认证系统"
+
+#: templates/accounts/login.html:3 templates/accounts/login.html.py:22
+#: templates/accounts/registration.html:22
+msgid "Login"
+msgstr "登录"
+
+#: templates/accounts/login.html:23
+msgid "Sign Up"
+msgstr "注册入口"
+
+#: templates/accounts/profile.html:3
+msgid "Profile"
+msgstr "个人资料"
+
+#: templates/accounts/profile.html:10
+msgid "Nickname:"
+msgstr "昵称："
+
+#: templates/accounts/profile.html:17
+msgid "gender:"
+msgstr "性别："
+
+#: templates/accounts/profile.html:24
+msgid "avator:"
+msgstr "头像："
+
+#: templates/accounts/registration.html:3
+#: templates/accounts/registration_closed.html:3
+#: templates/accounts/registration_finished.html:3
+msgid "Registration"
+msgstr "注册"
+
+#: templates/accounts/registration.html:21
+msgid "Apply"
+msgstr "申请"
+
+#: templates/accounts/registration_closed.html:6
+msgid "Sign Up Closed"
+msgstr "注册入口已关闭"
+
+#: templates/accounts/registration_closed.html:7
+msgid "We are sorry, but the sign up is currently closed."
+msgstr "抱歉，目前已暂停注册"
+
+#: templates/accounts/registration_finished.html:6
+msgid "Registration Applied."
+msgstr "注册信息已受理"

@@ -1,0 +1,38 @@
+{% load i18n staticfiles %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titles %} base template {% endblock %}</title>
+    <meta name="Description" content="">
+    <meta name="Keywords" content="">
+    <link rel="shortcut icon" href="{% static 'hosts/images/favicon.ico' %}" type="image/x-icon">
+    <!-- jQuery Start -->
+    <script src="{% static 'hosts/js/jquery-2.2.0.min.js' %}"></script>
+    <script src="{% static 'hosts/js/hosts-base.js' %}"></script>
+    {% block js4this %}{% endblock %}
+    <!-- End of jQuery -->
+    <!-- Bootstrap Start -->
+    <script src="{% static 'hosts/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'hosts/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts-base.css' %}">
+    {% block css4this %}{% endblock %}
+    <!-- End of Bootstrap -->
+</head>
+<body>
+<!-- Container Start -->
+<div class="container">
+    <!-- Nav Start -->
+    {% include "hosts/nav.html" %}
+    <!-- End of Nav -->
+
+    <!-- Content Start -->
+    {% block content %}{% endblock %}
+    <!-- End of Content -->
+
+</div>
+<!-- End of Container -->
+</body>
+</html>

@@ -1,6 +1,6 @@
 说明文件：django project "asset" 在centos7下的部署
 =======================================
-2016/12/26
+2017/1/5
 
 ####asset 是利用django后台实现的简易资源管理平台
 
@@ -45,7 +45,12 @@ prepare
         [root@tvm001 www]# python manage.py createsuperuser
         初始化app库：
         [root@tvm001 www]# python manage.py makemigrations hosts
+        [root@tvm001 www]# python manage.py makemigrations accounts
         [root@tvm001 www]# python manage.py migrate
+        测试：
+        [root@tvm001 www]# python manage.py test
+        收集静态文件：
+        [root@tvm001 www]# python manage.py collectstatic --no-input
 
         django默认是启用了 DEBUG 选项，但 asset 这个项目的代码已经关闭 DEBUG 选项，并设置了一下内容：
         ALLOWED_HOSTS
