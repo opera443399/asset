@@ -18,10 +18,10 @@ function do_t(){
 
 function do_r(){
     chown nobody:nobody -R "${source_path}/www"
-    /usr/local/bin/supervisorctl status
-    /usr/local/bin/supervisorctl reload
+    supervisorctl status
+    supervisorctl reload
     sleep 2
-    /usr/local/bin/supervisorctl status
+    supervisorctl status
 }
 
 function usage(){
