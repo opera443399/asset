@@ -17,10 +17,10 @@ prepare
 
 2. 调整 project setting ::
 
-        [root@tvm001 ~]# mkdir /opt/asset/latest && cd /opt/asset/latest
+        [root@tvm001 ~]# mkdir /opt/src && cd /opt/src
         直接克隆这个项目
-        [root@tvm001 latest]# git clone git项目来源
-        [root@tvm001 latest]# cd www/
+        [root@tvm001 src]# git clone git项目来源
+        [root@tvm001 src]# cd asset/www/
 
 
 3. 试着运行一下 ::
@@ -96,7 +96,7 @@ prepare
 4. admin后台 ::
 
         [root@tvm001 www]# python manage.py createsuperuser
-        根据提示创建root密码用于登录后台。
+        根据提示创建root密码用于登录后台（上一步已经创建过，可略过）。
         访问地址：http://you_server_ip/admin/
 
 
