@@ -1,6 +1,6 @@
 说明文件：django project "asset" 在centos7下的部署
 =======================================
-2017/1/5
+2017/1/24
 
 ####asset 是利用django后台实现的简易资源管理平台
 
@@ -12,9 +12,7 @@ prepare
         主要依赖：
         [root@tvm001 ~]# yum install python-pip
         [root@tvm001 ~]# pip install -r requirements.txt 
-        或者：
-        [root@tvm001 ~]# pip install django MySQL-python
-        （当然，也可以不用mysql，仅使用sqlite来测试）
+        （当然，也可以不用mysql，仅使用sqlite来测试，后续若新增其他的app时，这里的依赖关系，熟悉python和pip的应该都知道怎么处理，不再唠叨）
 
 2. 调整 project setting ::
 
@@ -172,8 +170,8 @@ deploy(execute shell with jenkins for exp)
         [root@tvm001 asset]# pwd
         /opt/src/asset
         [root@tvm001 asset]# ls
-        ctl.sh  jenkins.sh  README.md  requirements.txt  www
-        [root@tvm001 asset]# sh jenkins.sh 
+        ctl.sh  deploy.sh  README.md  requirements.txt  www
+        [root@tvm001 asset]# sh deploy.sh 
 
 
 
