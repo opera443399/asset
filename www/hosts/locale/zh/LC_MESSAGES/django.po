@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-05 14:17+0800\n"
+"POT-Creation-Date: 2017-02-04 15:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -323,15 +323,15 @@ msgstr "查看用户信息"
 
 #: templates/hosts/nav.html:49
 msgid "Signed in as"
-msgstr "已登录"
+msgstr "已登录为: "
 
 #: templates/hosts/nav.html:56
 msgid "Your profile"
 msgstr "用户信息"
 
 #: templates/hosts/nav.html:61
-msgid "Help"
-msgstr "帮助"
+msgid "Management"
+msgstr "管理"
 
 #: templates/hosts/nav.html:67
 msgid "Sign out"
@@ -340,3 +340,4 @@ msgstr "注销"
 #: templates/hosts/nav.html:75
 msgid "Sign in"
 msgstr "登录"
+
