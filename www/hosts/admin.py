@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/1/5
+# @ 2017/2/6
 # @ PC
 # ----------------------------------
 
@@ -72,17 +72,17 @@ class MachineAdmin(admin.ModelAdmin):
 
 class VmAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['hostname', 'on_host', 'on_cluster', 'instance_type']}),
+        (None, {'fields': ['hostname', 'on_host', 'on_cluster', 'on_idc', 'instance_type']}),
         (_('OS'), {'fields': ['os_ip_wan', 'os_ip_lan', 'os_type', 'os_user_root', 'os_pass_root',
                               'os_user_guest', 'os_pass_guest']}),
         (_('Status'), {'fields': ['is_monited', 'is_online']}),
         (_('APP'), {'fields': ['app_desc', 'operator', 'mount_point', 'desc']}),
         (_('Date information'), {'fields': ['dt_created']}),
     ]
-    list_display = ('hostname', 'on_host', 'on_cluster', 'os_ip_wan', 'os_ip_lan', 'os_type',
+    list_display = ('hostname', 'on_host', 'on_cluster', 'on_idc', 'os_ip_wan', 'os_ip_lan', 'os_type',
                     'app_desc', 'operator', 'instance_type',
                     'is_monited', 'is_online', 'was_added_recently')
-    list_filter = ['on_host', 'on_cluster', 'os_type', 'operator', 'instance_type', 'dt_created']
+    list_filter = ['on_host', 'on_cluster', 'on_idc', 'os_type', 'operator', 'instance_type', 'dt_created']
     search_fields = ['hostname', 'os_ip_wan', 'os_ip_lan', 'app_desc']
 
 

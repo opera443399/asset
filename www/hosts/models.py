@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2016/12/29
+# @ 2017/2/6
 # @ PC
 # ----------------------------------
 
@@ -181,6 +181,7 @@ class Vm(models.Model):
     hostname = models.CharField(_('Hostname'), max_length=100, unique=True)
     on_host = models.ForeignKey(Machine, default='1', verbose_name=_('On Host'))
     on_cluster = models.ForeignKey(Cluster, default='1', verbose_name=_('On Cluster'))
+    on_idc = models.ForeignKey(IDCInfo, default='1', verbose_name=_('IDC'))
     #
     os_ip_wan = models.GenericIPAddressField(_('IP_WAN'), default='0.0.0.0')
     os_ip_lan = models.GenericIPAddressField(_('IP_LAN'))
