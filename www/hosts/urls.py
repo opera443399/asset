@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2016/12/27
+# @ 2017/3/13
 # @ PC
 # ----------------------------------
 
@@ -12,7 +12,9 @@ urlpatterns = [
     #################################### /hosts/xxx
     #
     url(r'^$', views.show_index, name='show_index'),
-    url(r'^load/vms$', views.load_data_vms, name='load_data_vms'),
-    url(r'^load/hosts$', views.load_data_hosts, name='load_data_hosts'),
+    url(r'^import/vms$', views.import_vms, name='import_vms'),
+    url(r'^import/hosts$', views.import_hosts, name='import_hosts'),
+    url(r'^list/vms$', views.list_vms, name='list_vms'),
+    url(r'^list/hosts$', views.list_hosts, name='list_hosts'),
     url(r'^show/about$', views.show_about, name='show_about'),
 ]

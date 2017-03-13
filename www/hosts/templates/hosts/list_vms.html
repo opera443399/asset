@@ -1,0 +1,69 @@
+{% extends 'hosts/base.html' %}
+{% load i18n staticfiles %}
+{% block titles %}{% trans 'VM' %}{% endblock %}
+{% block content %}
+{% if list_of_vms %}
+    <div class="row text-center">
+        {% if list_of_vms.has_previous %}
+        <strong><a href="?page={{ list_of_vms.previous_page_number }}">{% trans 'Previous' %}</a></strong>
+        {% endif %}
+
+        <em>Page {{ list_of_vms.number }} of {{ list_of_vms.paginator.num_pages }}</em>
+
+        {% if list_of_vms.has_next %}
+        <strong>
+            <a href="?page={{ list_of_vms.next_page_number }}">{% trans 'Next' %}</a>
+        </strong>
+        {% endif %}
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <caption class="text-center">{% trans 'VM' %}</caption>
+            <thead>
+                <tr>
+                    <th>{% trans 'Hostname' %}</th>
+                    <th>{% trans 'Type' %}</th>
+                    <th>{% trans 'IP' %}</th>
+                    <th>{% trans 'OS' %}</th>
+                    <th>{% trans 'Status' %}</th>
+                    <th>{% trans 'RunEnv' %}</th>
+                    <th>{% trans 'BizUnit' %}</th>
+                    <th>{% trans 'Desc' %}</th>
+                    <th>{% trans 'EndUser' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for a in list_of_vms %}
+                <tr>
+                    <td>{{ a.hostname }}</td>
+                    <td>{{ a.instance_type }}</td>
+                    <td>{{ a.os_ip_lan }}</td>
+                    <td>{{ a.os_type }}</td>
+                    <td>
+                        {% if a.is_online %}
+                            {% trans 'Online' %}
+                        {% else %}
+                            {% trans 'Offline' %}
+                        {% endif %}
+                    </td>
+                    <td>{{ a.run_env }}</td>
+                    <td>{{ a.biz_unit }}</td>
+                    <td>{{ a.app_desc }}</td>
+                    <td>{{ a.operator }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="row text-info text-center">
+        <p><strong>{% trans 'Not available.' %}<strong></p>
+    </div>
+{% endif %}
+
+
+    <!-- i18n Start -->
+    {% include "hosts/i18n.html" %}
+    <!-- End of i18n -->
+
+{% endblock %}

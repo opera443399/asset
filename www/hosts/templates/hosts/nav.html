@@ -23,11 +23,26 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{% url 'hosts:load_data_hosts' %}" title="{% trans 'Host' %}">{% trans 'Host' %}</a>
+                            <a href="{% url 'hosts:import_hosts' %}" title="{% trans 'Host' %}">{% trans 'Host' %}</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{% url 'hosts:load_data_vms' %}" title="{% trans 'VM' %}">{% trans 'VM' %}</a>
+                            <a href="{% url 'hosts:import_vms' %}" title="{% trans 'VM' %}">{% trans 'VM' %}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                       {% trans 'Resource' %}
+                       <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{% url 'hosts:list_hosts' %}" title="{% trans 'Host' %}">{% trans 'Host' %}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{% url 'hosts:list_vms' %}" title="{% trans 'VM' %}">{% trans 'VM' %}</a>
                         </li>
                     </ul>
                 </li>

@@ -1,13 +1,14 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/2/6
+# @ 2017/3/13
 # @ PC
 # ----------------------------------
 
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Vendor, DeviceType, InstanceType, IDCInfo, OSType, EndUser, Cluster, Machine, Vm
+from .models import Vendor, DeviceType, InstanceType, IDCInfo, OSType, \
+    EndUser, Cluster, BusinessUnit, RuntimeEnvironment, Machine, Vm
 
 # Register your models here.
 
@@ -48,13 +49,24 @@ class ClusterAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
+class BusinessUnitAdmin(admin.ModelAdmin):
+    list_display = ('name', 'desc')
+    search_fields = ['name']
+
+
+class RuntimeEnvironmentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'desc')
+    search_fields = ['name']
+
 class MachineAdmin(admin.ModelAdmin):
+    list_per_page = 20
+    list_select_related = ()
     fieldsets = [
         (None, {'fields': ['hostname', 'cluster']}),
         (_('OS'), {'fields': ['os_ip_wan1', 'os_ip_wan2', 'os_ip_lan_mgmt', 'os_ip_lan_stor',
                               'os_ip_lan_biz', 'os_type', 'os_user_root', 'os_pass_root',
                               'os_user_guest', 'os_pass_guest']}),
-        (_('APP'), {'fields': ['app_desc', 'operator']}),
+        (_('APP'), {'fields': ['app_desc', 'biz_unit', 'run_env', 'operator']}),
         (_('Status'), {'fields': ['is_monited', 'is_online', 'is_v_host']}),
         (_('Device'), {'fields': ['device_sn', 'vendor', 'model', 'device_ipmi_ip','device_ipmi_user',
                                   'device_ipmi_pass', 'device_raid_level', 'desc']}),
@@ -63,26 +75,30 @@ class MachineAdmin(admin.ModelAdmin):
         (_('Date information'), {'fields': ['dt_created']}),
     ]
     list_display = ('hostname', 'cluster', 'idc', 'os_ip_wan1', 'os_ip_lan_mgmt', 'os_type',
-                    'app_desc', 'operator',
-                    'model', 'device_ipmi_ip', 'device_raid_level',
+                    'app_desc', 'biz_unit', 'run_env', 'operator',
+                    'model', 'device_raid_level',
                     'is_monited', 'is_online', 'is_v_host')
-    list_filter = ['model', 'device_raid_level', 'idc', 'os_type', 'operator', 'dt_created']
-    search_fields = ['hostname', 'device_ipmi_ip', 'os_ip_wan1', 'os_ip_lan_mgmt', 'app_desc']
+    list_filter = ['model', 'device_raid_level', 'idc', 'os_type',
+                   'biz_unit', 'run_env', 'operator', 'dt_created']
+    search_fields = ['hostname', 'os_ip_wan1', 'os_ip_lan_mgmt', 'app_desc']
 
 
 class VmAdmin(admin.ModelAdmin):
+    list_per_page = 20
+    list_select_related = ()
     fieldsets = [
         (None, {'fields': ['hostname', 'on_host', 'on_cluster', 'on_idc', 'instance_type']}),
         (_('OS'), {'fields': ['os_ip_wan', 'os_ip_lan', 'os_type', 'os_user_root', 'os_pass_root',
                               'os_user_guest', 'os_pass_guest']}),
         (_('Status'), {'fields': ['is_monited', 'is_online']}),
-        (_('APP'), {'fields': ['app_desc', 'operator', 'mount_point', 'desc']}),
+        (_('APP'), {'fields': ['app_desc','operator', 'mount_point', 'desc']}),
         (_('Date information'), {'fields': ['dt_created']}),
     ]
-    list_display = ('hostname', 'on_host', 'on_cluster', 'on_idc', 'os_ip_wan', 'os_ip_lan', 'os_type',
-                    'app_desc', 'operator', 'instance_type',
+    list_display = ('hostname', 'on_cluster', 'on_idc', 'os_ip_wan', 'os_ip_lan', 'os_type',
+                    'app_desc', 'biz_unit', 'run_env', 'operator', 'instance_type',
                     'is_monited', 'is_online', 'was_added_recently')
-    list_filter = ['on_host', 'on_cluster', 'on_idc', 'os_type', 'operator', 'instance_type', 'dt_created']
+    list_filter = ['on_cluster', 'on_idc', 'os_type', 'operator',
+                   'instance_type', 'dt_created']
     search_fields = ['hostname', 'os_ip_wan', 'os_ip_lan', 'app_desc']
 
 
@@ -93,5 +109,7 @@ admin.site.register(IDCInfo, IDCInfoAdmin)
 admin.site.register(OSType, OSTypeAdmin)
 admin.site.register(EndUser, EndUserAdmin)
 admin.site.register(Cluster, ClusterAdmin)
+admin.site.register(BusinessUnit, BusinessUnitAdmin)
+admin.site.register(RuntimeEnvironment, RuntimeEnvironmentAdmin)
 admin.site.register(Machine, MachineAdmin)
 admin.site.register(Vm, VmAdmin)

@@ -1,4 +1,4 @@
 ## FIELDS:
-#hostname,cluster,os_ip_wan1,os_ip_lan_mgmt,os_pass_root,os_pass_guest,app_desc,os_type,device_sn,model,device_ipmi_ip,device_ipmi_pass,device_raid_level,idc,idc_rack,idc_rack_h,asset_no,operator
+#hostname,cluster,os_ip_wan1,os_ip_lan_mgmt,os_pass_root,os_pass_guest,app_desc,biz_unit,run_env,os_type,device_sn,model,device_ipmi_ip,device_ipmi_pass,device_raid_level,idc,idc_rack,idc_rack_h,asset_no,operator
 ## EXP:
-#test,NULL,0.0.0.0,1.2.3.4,abc,abc,testHOST,CentOS 6.5 x64,SNabc,C1_1,0.0.0.0,abc,5,BJ_01,AAA,30,NOabc,ops_sys
+#testHOST,NULL,0.0.0.0,1.2.3.4,abc,abc,testHOST,NULL,NULL,CentOS 6.5 x64,SNabc,C1_1,0.0.0.0,abc,5,SZ_01,AAA,30,NOabc,ops_sys

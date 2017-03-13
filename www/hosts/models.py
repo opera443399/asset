@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/2/6
+# @ 2017/3/13
 # @ PC
 # ----------------------------------
 
@@ -121,6 +121,31 @@ class Cluster(models.Model):
 
 
 @python_2_unicode_compatible
+class BusinessUnit(models.Model):
+    name = models.CharField(_('Name'), max_length=20, default='NULL')
+    desc = models.CharField(_('Description'), max_length=100, default='Extra info.')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('BizUnit')
+        verbose_name_plural = _('BizUnit')
+
+
+@python_2_unicode_compatible
+class RuntimeEnvironment(models.Model):
+    name = models.CharField(_('Name'), max_length=20, default='NULL')
+    desc = models.CharField(_('Description'), max_length=100, default='Extra info.')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('RunEnv')
+        verbose_name_plural = _('RunEnv')
+
+@python_2_unicode_compatible
 class Machine(models.Model):
     hostname = models.CharField(_('Hostname'), max_length=100, unique=True)
     cluster = models.ForeignKey(Cluster, default='1', verbose_name=_('Cluster'))
@@ -137,6 +162,8 @@ class Machine(models.Model):
     os_pass_guest = models.CharField(_('Password of Guest'), max_length=40, default='NULL')
     #
     app_desc = models.CharField(_('App Description'), max_length=40, default='NOT_IN_USE')
+    biz_unit = models.ForeignKey(BusinessUnit, default='1', verbose_name=_('BizUnit'))
+    run_env = models.ForeignKey(RuntimeEnvironment, default='1', verbose_name=_('RunEnv'))
     operator = models.ForeignKey(EndUser, default='1', verbose_name=_('EndUser'))
     #
     is_monited = models.BooleanField(_('Is Monited?'), default=False)
@@ -195,6 +222,8 @@ class Vm(models.Model):
     is_online = models.BooleanField(_('Is Online?'), default=False)
     #
     app_desc = models.CharField(_('App Description'), max_length=40, default='NOT_IN_USE')
+    biz_unit = models.ForeignKey(BusinessUnit, default='1', verbose_name=_('BizUnit'))
+    run_env = models.ForeignKey(RuntimeEnvironment, default='1', verbose_name=_('RunEnv'))
     operator = models.ForeignKey(EndUser, default='1', verbose_name=_('EndUser'))
     instance_type = models.ForeignKey(InstanceType, default='1', verbose_name=_('Instance Type'))
     mount_point = models.CharField(_('Mount Point'), max_length=40, default='NULL')

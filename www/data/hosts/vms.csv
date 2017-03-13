@@ -1,4 +1,4 @@
 ## FIELDS:
-#hostname,on_host,on_cluster,os_ip_lan,os_pass_root,os_pass_guest,app_desc,os_type,operator
+#hostname,on_host,on_cluster,os_ip_lan,os_pass_root,os_pass_guest,app_desc,biz_unit,run_env,os_type,operator
 ## EXP:
-#test,NULL,NULL,0.0.0.0,1.2.3.4,abc,abc,testVM,CentOS 6.5 x64,ops_sys
+#testVM,NULL,NULL,0.0.0.0,1.2.3.4,abc,abc,testVM,NULL,NULL,CentOS 6.5 x64,ops_sys
