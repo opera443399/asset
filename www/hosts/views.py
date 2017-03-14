@@ -1,10 +1,9 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/3/13
+# @ 2017/3/14
 # @ PC
 # ----------------------------------
 
-from django.http import HttpResponse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -135,9 +134,11 @@ def import_hosts(request):
     if not msgs:
         msgs = 'no data!'
     else:
-        msgs += '<br/><br/>success: {0}, failure: {1}.'.format(import_count_ok, import_count_fail)
-    context = '[*] import result: {0}'.format(msgs)
-    return HttpResponse(context)
+        msgs += '<br/><br/>success: {0}, failure: <font color="red">{1}</font>.'.format(
+                import_count_ok, import_count_fail)
+    context = {'msgs': '[*] import result: {0}'.format(msgs)}
+
+    return render(request, 'hosts/import.html', context)
 
 
 @login_required
@@ -200,6 +201,8 @@ def import_vms(request):
     if not msgs:
         msgs = 'no data!'
     else:
-        msgs += '<br/><br/>success: {0}, failure: {1}.'.format(import_count_ok, import_count_fail)
-    context = '[*] import result: {0}'.format(msgs)
-    return HttpResponse(context)
+        msgs += '<br/><br/>success: {0}, failure: <font color="red">{1}</font>.'.format(
+                import_count_ok, import_count_fail)
+    context = {'msgs': '[*] import result: {0}'.format(msgs)}
+
+    return render(request, 'hosts/import.html', context)

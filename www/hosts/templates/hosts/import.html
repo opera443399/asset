@@ -1,0 +1,16 @@
+{% extends 'hosts/base.html' %}
+{% load i18n staticfiles %}
+{% block titles %}{% trans 'import' %}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-8">
+            {% autoescape off %}
+            {{ msgs }}
+            {% endautoescape %}
+        </div>
+    </div>
+    <!-- i18n Start -->
+    {% include "hosts/i18n.html" %}
+    <!-- End of i18n -->
+
+{% endblock %}
