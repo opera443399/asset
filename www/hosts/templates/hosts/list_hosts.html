@@ -2,6 +2,20 @@
 {% load i18n staticfiles %}
 {% block titles %}{% trans 'Host' %}{% endblock %}
 {% block content %}
+{% if biz_units %}
+    <div class="row">
+        <div class="col-sm-10">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="{% url 'hosts:list_hosts' 0 %}">{% trans 'BizUnit' %}: </a></li>
+            {% for b in biz_units %}
+                <li>
+                    <a href="{% url 'hosts:list_hosts' b.id %}" title="{{ b.desc }}">{{ b.name }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}
 {% if list_of_hosts %}
     <div class="row text-center">
         {% if list_of_hosts.has_previous %}

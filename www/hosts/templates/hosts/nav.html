@@ -38,11 +38,11 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{% url 'hosts:list_hosts' %}" title="{% trans 'Host' %}">{% trans 'Host' %}</a>
+                            <a href="{% url 'hosts:list_hosts' 0 %}" title="{% trans 'Host' %}">{% trans 'Host' %}</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{% url 'hosts:list_vms' %}" title="{% trans 'VM' %}">{% trans 'VM' %}</a>
+                            <a href="{% url 'hosts:list_vms' 0 %}" title="{% trans 'VM' %}">{% trans 'VM' %}</a>
                         </li>
                     </ul>
                 </li>

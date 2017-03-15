@@ -28,9 +28,13 @@ def show_about(request):
 
 
 @login_required
-def list_hosts(request):
+def list_hosts(request, bid):
     """list hosts"""
-    data = Machine.objects.order_by('-run_env')
+    if int(bid) == 0:
+        data = Machine.objects.order_by('-run_env')
+    else:
+        data = Machine.objects.filter(biz_unit=bid).order_by('-run_env')
+
     ## pagenation: show 10 rows per page
     paginator = Paginator(data, 10)
     page = request.GET.get('page')
@@ -40,15 +44,24 @@ def list_hosts(request):
         list_of_hosts = paginator.page(1)
     except EmptyPage:
         list_of_hosts = paginator.page(paginator.num_pages)
-    context = {'list_of_hosts': list_of_hosts}
+
+    biz_units = BusinessUnit.objects.all()
+    context = {
+        'list_of_hosts': list_of_hosts,
+        'biz_units': biz_units
+    }
 
     return render(request, 'hosts/list_hosts.html', context)
 
 
 @login_required
-def list_vms(request):
+def list_vms(request, bid):
     """list vms"""
-    data = Vm.objects.order_by('-run_env')
+    if int(bid) == 0:
+        data = Vm.objects.order_by('-run_env')
+    else:
+        data = Vm.objects.filter(biz_unit=bid).order_by('-run_env')
+
     ## pagenation: show 10 rows per page
     paginator = Paginator(data, 10)
     page = request.GET.get('page')
@@ -58,7 +71,12 @@ def list_vms(request):
         list_of_vms = paginator.page(1)
     except EmptyPage:
         list_of_vms = paginator.page(paginator.num_pages)
-    context = {'list_of_vms': list_of_vms}
+
+    biz_units = BusinessUnit.objects.all()
+    context = {
+        'list_of_vms': list_of_vms,
+        'biz_units': biz_units
+    }
 
     return render(request, 'hosts/list_vms.html', context)
 
