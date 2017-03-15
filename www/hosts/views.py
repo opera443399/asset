@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/3/14
+# @ 2017/3/15
 # @ PC
 # ----------------------------------
 
@@ -32,7 +32,7 @@ def list_hosts(request):
     """list hosts"""
     data = Machine.objects.order_by('-run_env')
     ## pagenation: show 10 rows per page
-    paginator = Paginator(data, 20)
+    paginator = Paginator(data, 10)
     page = request.GET.get('page')
     try:
         list_of_hosts = paginator.page(page)
@@ -50,7 +50,7 @@ def list_vms(request):
     """list vms"""
     data = Vm.objects.order_by('-run_env')
     ## pagenation: show 10 rows per page
-    paginator = Paginator(data, 20)
+    paginator = Paginator(data, 10)
     page = request.GET.get('page')
     try:
         list_of_vms = paginator.page(page)
