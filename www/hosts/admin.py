@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/3/13
+# @ 2017/3/16
 # @ PC
 # ----------------------------------
 
@@ -91,7 +91,7 @@ class VmAdmin(admin.ModelAdmin):
         (_('OS'), {'fields': ['os_ip_wan', 'os_ip_lan', 'os_type', 'os_user_root', 'os_pass_root',
                               'os_user_guest', 'os_pass_guest']}),
         (_('Status'), {'fields': ['is_monited', 'is_online']}),
-        (_('APP'), {'fields': ['app_desc','operator', 'mount_point', 'desc']}),
+        (_('APP'), {'fields': ['app_desc', 'biz_unit', 'run_env', 'operator', 'mount_point', 'desc']}),
         (_('Date information'), {'fields': ['dt_created']}),
     ]
     list_display = ('hostname', 'on_cluster', 'on_idc', 'os_ip_wan', 'os_ip_lan', 'os_type',
