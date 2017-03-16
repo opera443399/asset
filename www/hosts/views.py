@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/3/15
+# @ 2017/3/16
 # @ PC
 # ----------------------------------
 
@@ -28,12 +28,28 @@ def show_about(request):
 
 
 @login_required
-def list_hosts(request, bid):
+def list_hosts(request):
     """list hosts"""
-    if int(bid) == 0:
+    ## get filters
+    try:
+        biz_unit_id = int(request.GET.get('biz_unit'))
+    except (KeyError, ValueError, TypeError):
+        biz_unit_id = 0
+
+    try:
+        run_env_id = int(request.GET.get('run_env'))
+    except (KeyError, ValueError, TypeError):
+        run_env_id = 0
+
+    ## filtering
+    if biz_unit_id == 0 and run_env_id == 0:
         data = Machine.objects.order_by('-run_env')
+    elif biz_unit_id != 0 and run_env_id == 0:
+        data = Machine.objects.filter(biz_unit=biz_unit_id).order_by('-run_env')
+    elif biz_unit_id == 0 and run_env_id != 0:
+        data = Machine.objects.filter(run_env=run_env_id).order_by('-run_env')
     else:
-        data = Machine.objects.filter(biz_unit=bid).order_by('-run_env')
+        data = Machine.objects.filter(biz_unit=biz_unit_id).filter(run_env=run_env_id).order_by('-run_env')
 
     ## pagenation: show 10 rows per page
     paginator = Paginator(data, 10)
@@ -46,22 +62,41 @@ def list_hosts(request, bid):
         list_of_hosts = paginator.page(paginator.num_pages)
 
     biz_units = BusinessUnit.objects.all()
+    run_envs = RuntimeEnvironment.objects.all()
     context = {
         'list_of_hosts': list_of_hosts,
         'biz_units': biz_units,
-        'selected_biz_unit_id': int(bid)
+        'run_envs': run_envs,
+        'selected_biz_unit_id': biz_unit_id,
+        'selected_run_env_id': run_env_id
     }
 
     return render(request, 'hosts/list_hosts.html', context)
 
 
 @login_required
-def list_vms(request, bid):
+def list_vms(request):
     """list vms"""
-    if int(bid) == 0:
+    ## get filters
+    try:
+        biz_unit_id = int(request.GET.get('biz_unit'))
+    except (KeyError, ValueError, TypeError):
+        biz_unit_id = 0
+
+    try:
+        run_env_id = int(request.GET.get('run_env'))
+    except (KeyError, ValueError, TypeError):
+        run_env_id = 0
+
+    ## filtering
+    if biz_unit_id == 0 and run_env_id == 0:
         data = Vm.objects.order_by('-run_env')
+    elif biz_unit_id != 0 and run_env_id == 0:
+        data = Vm.objects.filter(biz_unit=biz_unit_id).order_by('-run_env')
+    elif biz_unit_id == 0 and run_env_id != 0:
+        data = Vm.objects.filter(run_env=run_env_id).order_by('-run_env')
     else:
-        data = Vm.objects.filter(biz_unit=bid).order_by('-run_env')
+        data = Vm.objects.filter(biz_unit=biz_unit_id).filter(run_env=run_env_id).order_by('-run_env')
 
     ## pagenation: show 10 rows per page
     paginator = Paginator(data, 10)
@@ -74,10 +109,13 @@ def list_vms(request, bid):
         list_of_vms = paginator.page(paginator.num_pages)
 
     biz_units = BusinessUnit.objects.all()
+    run_envs = RuntimeEnvironment.objects.all()
     context = {
         'list_of_vms': list_of_vms,
         'biz_units': biz_units,
-        'selected_biz_unit_id': int(bid)
+        'run_envs': run_envs,
+        'selected_biz_unit_id': biz_unit_id,
+        'selected_run_env_id': run_env_id
     }
 
     return render(request, 'hosts/list_vms.html', context)
