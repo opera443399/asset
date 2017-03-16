@@ -6,12 +6,23 @@
     <div class="row">
         <div class="col-sm-10">
             <ul class="nav nav-pills">
-                <li class="active"><a href="{% url 'hosts:list_vms' 0 %}">{% trans 'BizUnit' %}: </a></li>
-            {% for b in biz_units %}
+                <li class="disabled"><a href="#">{% trans 'BizUnit' %}: </a></li>
+            {% if selected_biz_unit_id == 0 %}
+                <li class="active">
+            {% else %}
                 <li>
+            {% endif %}
+                    <a href="{% url 'hosts:list_vms' 0 %}">{% trans 'All' %}</a>
+                </li>
+        {% for b in biz_units %}
+            {% if selected_biz_unit_id == b.id %}
+                <li class="active">
+            {% else %}
+                <li>
+            {% endif %}
                     <a href="{% url 'hosts:list_vms' b.id %}" title="{{ b.desc }}">{{ b.name }}</a>
                 </li>
-            {% endfor %}
+        {% endfor %}
             </ul>
         </div>
     </div>

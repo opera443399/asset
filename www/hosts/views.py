@@ -48,7 +48,8 @@ def list_hosts(request, bid):
     biz_units = BusinessUnit.objects.all()
     context = {
         'list_of_hosts': list_of_hosts,
-        'biz_units': biz_units
+        'biz_units': biz_units,
+        'selected_biz_unit_id': int(bid)
     }
 
     return render(request, 'hosts/list_hosts.html', context)
@@ -75,7 +76,8 @@ def list_vms(request, bid):
     biz_units = BusinessUnit.objects.all()
     context = {
         'list_of_vms': list_of_vms,
-        'biz_units': biz_units
+        'biz_units': biz_units,
+        'selected_biz_unit_id': int(bid)
     }
 
     return render(request, 'hosts/list_vms.html', context)
