@@ -1,7 +1,7 @@
 #!/bin/bash
 # 
 # execute shell for jenkins
-# 2017/1/5
+# 2017/3/16
 
 # setup
 d_root='/opt/asset'
@@ -20,8 +20,8 @@ sudo /bin/bash ${d_link}/ctl.sh r
 # cleanup
 echo "[-] List dir:"
 sudo ls -l ${d_root}
-echo "[-] try to remove copies old than 60 minutes::"
-sudo find ${d_root} -maxdepth 1 -amin +60 -print |sort
-sudo find ${d_root} -maxdepth 1 -amin +60 -exec rm -fr {} \;
+echo "[-] File was last accessed n*24 hours ago:"
+sudo find ${d_root} -maxdepth 1 -atime +7 -print |sort
+sudo find ${d_root} -maxdepth 1 -atime +7 -exec rm -fr {} \;
 echo "[-] List dir again:"
 sudo ls -l ${d_root}
