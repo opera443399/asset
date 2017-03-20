@@ -9,21 +9,21 @@
             <div class="row">
                 <label class="col-sm-6 text-right">{% trans "Nickname:" %}</label>
                 <div class="col-sm-6">
-                    <span>{{ user.player.nickname }}</span>
+                    <span>{{ user.myuser.nickname }}</span>
                 </div>
             </div>
 
             <div class="row">
                 <label class="col-sm-6 text-right">{% trans "gender:" %}</label>
                 <div class="col-sm-6">
-                    <span>{{ user.player.gender }}</span>
+                    <span>{{ user.myuser.gender }}</span>
                 </div>
             </div>
 
             <div class="row">
-                <label class="col-sm-6 text-right">{% trans "avator:" %}</label>
+                <label class="col-sm-6 text-right">{% trans "avatar:" %}</label>
                 <div class="col-sm-6">
-                    <img src="{% get_media_prefix %}{{ user.player.avator }}">
+                    <img src="{% get_media_prefix %}{{ user.myuser.avatar }}">
                 </div>
             </div>
 
