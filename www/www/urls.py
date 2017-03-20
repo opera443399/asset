@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.utils.translation import ugettext_lazy as _
 
-from hosts import views as hosts_views
+from assets import views as hosts_views
 admin.site.site_header = _('Asset management')
 admin.site.index_title = _('Site admin')
 admin.site.site_title = _('Asset')
@@ -33,7 +33,7 @@ urlpatterns = [
     #################################### apps
     #
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^hosts/', include('hosts.urls')),
+    url(r'^assets/', include('assets.urls')),
 
     #################################### admin
     #

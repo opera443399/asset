@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/3/16
+# @ 2017/3/20
 # @ PC
 # ----------------------------------
 
@@ -19,12 +19,12 @@ from .models import DeviceType, IDCInfo, OSType, EndUser, Cluster, BusinessUnit,
 
 def show_index(request):
     """test only"""
-    return render(request, 'hosts/index.html')
+    return render(request, 'assets/index.html')
 
 
 def show_about(request):
     """test only"""
-    return render(request, 'hosts/about.html')
+    return render(request, 'assets/about.html')
 
 
 @login_required
@@ -71,7 +71,7 @@ def list_hosts(request):
         'selected_run_env_id': run_env_id
     }
 
-    return render(request, 'hosts/list_hosts.html', context)
+    return render(request, 'assets/list_hosts.html', context)
 
 
 @login_required
@@ -118,7 +118,7 @@ def list_vms(request):
         'selected_run_env_id': run_env_id
     }
 
-    return render(request, 'hosts/list_vms.html', context)
+    return render(request, 'assets/list_vms.html', context)
 
 
 @login_required
@@ -129,8 +129,8 @@ def import_hosts(request):
     """
     host_status = {}
     import_count_ok = import_count_fail = 0
-    ##cwd()/data/hosts/*.csv
-    f_data = "{0}{1}data{1}hosts{1}{2}".format(os.getcwd(), os.sep, 'hosts.csv')
+    ##cwd()/data/import/*.csv
+    f_data = "{0}{1}data{1}import{1}{2}".format(os.getcwd(), os.sep, 'hosts.csv')
     with open(f_data) as f:
         for line in f:
             if line.startswith('#'):
@@ -196,7 +196,7 @@ def import_hosts(request):
                 import_count_ok, import_count_fail)
     context = {'msgs': '[*] import result: {0}'.format(msgs)}
 
-    return render(request, 'hosts/import.html', context)
+    return render(request, 'assets/import.html', context)
 
 
 @login_required
@@ -207,8 +207,8 @@ def import_vms(request):
     """
     import_status = {}
     import_count_ok = import_count_fail = 0
-    ##cwd()/data/hosts/*.csv
-    f_data = "{0}{1}data{1}hosts{1}{2}".format(os.getcwd(), os.sep, 'vms.csv')
+    ##cwd()/data/import/*.csv
+    f_data = "{0}{1}data{1}import{1}{2}".format(os.getcwd(), os.sep, 'vms.csv')
     with open(f_data) as f:
         for line in f:
             if line.startswith('#'):
@@ -263,4 +263,4 @@ def import_vms(request):
                 import_count_ok, import_count_fail)
     context = {'msgs': '[*] import result: {0}'.format(msgs)}
 
-    return render(request, 'hosts/import.html', context)
+    return render(request, 'assets/import.html', context)

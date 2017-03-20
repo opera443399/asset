@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-                <img class="img-rounded img-avatar" src="{% static 'hosts/images/logo.png' %}" alt="Home" title="{% trans 'Back Home? Click me.' %}" />
+                <img class="img-rounded img-avatar" src="{% static 'assets/images/logo.png' %}" alt="Home" title="{% trans 'Back Home? Click me.' %}" />
             </a>
             <a class="navbar-brand" href="/">
                 ops home
@@ -23,11 +23,11 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{% url 'hosts:import_hosts' %}" title="{% trans 'Host' %}">{% trans 'Host' %}</a>
+                            <a href="{% url 'assets:import_hosts' %}" title="{% trans 'Host' %}">{% trans 'Host' %}</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{% url 'hosts:import_vms' %}" title="{% trans 'VM' %}">{% trans 'VM' %}</a>
+                            <a href="{% url 'assets:import_vms' %}" title="{% trans 'VM' %}">{% trans 'VM' %}</a>
                         </li>
                     </ul>
                 </li>
@@ -38,16 +38,16 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{% url 'hosts:list_hosts' %}" title="{% trans 'Host' %}">{% trans 'Host' %}</a>
+                            <a href="{% url 'assets:list_hosts' %}" title="{% trans 'Host' %}">{% trans 'Host' %}</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{% url 'hosts:list_vms' %}" title="{% trans 'VM' %}">{% trans 'VM' %}</a>
+                            <a href="{% url 'assets:list_vms' %}" title="{% trans 'VM' %}">{% trans 'VM' %}</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{% url 'hosts:show_about' %}" title="{% trans 'About' %}">{% trans 'About' %}</a>
+                    <a href="{% url 'assets:show_about' %}" title="{% trans 'About' %}">{% trans 'About' %}</a>
                 </li>
             </ul>
 

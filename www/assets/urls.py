@@ -1,15 +1,15 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/3/16
+# @ 2017/3/20
 # @ PC
 # ----------------------------------
 
 from django.conf.urls import url
 from . import views
 
-app_name = 'hosts'
+app_name = 'assets'
 urlpatterns = [
-    #################################### /hosts/xxx
+    #################################### /assets/xxx
     #
     url(r'^$', views.show_index, name='show_index'),
     url(r'^import/vms$', views.import_vms, name='import_vms'),

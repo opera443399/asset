@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'accounts.apps.AccountsConfig',
-    'hosts',
+    'assets.apps.AssetsConfig'
 ]
 
 MIDDLEWARE_CLASSES = [

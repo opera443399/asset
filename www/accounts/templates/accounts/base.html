@@ -8,15 +8,15 @@
     <title>{% block titles %} base template {% endblock %}</title>
     <meta name="Description" content="">
     <meta name="Keywords" content="">
-    <link rel="shortcut icon" href="{% static 'hosts/images/favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon">
     <!-- jQuery Start -->
-    <script src="{% static 'hosts/js/jquery-2.2.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-2.2.0.min.js' %}"></script>
     {% block js4this %}{% endblock %}
     <!-- End of jQuery -->
     <!-- Bootstrap Start -->
-    <script src="{% static 'hosts/js/bootstrap.min.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'hosts/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'hosts/css/hosts-base.css' %}">
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/assets-base.css' %}">
     <link rel="stylesheet" href="{% static 'accounts/css/accounts-base.css' %}">
     {% block css4this %}{% endblock %}
     <!-- End of Bootstrap -->
@@ -26,7 +26,7 @@
 <div class="container">
 
     <!-- Nav Start -->
-    {% include "hosts/nav.html" %}
+    {% include "assets/nav.html" %}
     <!-- End of Nav -->
 
     <!-- Title Start -->
