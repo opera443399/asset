@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/1/4
+# @ 2017/3/20
 # @ PC
 # ----------------------------------
 
@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avator = models.ImageField(upload_to='avators', default='avators/default.png', blank=True)
+    avatar = models.ImageField(upload_to='avatars', default='avatars/default.png', blank=True)
     gender = models.CharField(max_length=20, default='Secret')
     nickname = models.CharField(max_length=40, default='New Player')
 
