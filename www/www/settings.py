@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'accounts.apps.AccountsConfig',
-    'assets.apps.AssetsConfig'
+    'assets.apps.AssetsConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -153,3 +154,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/1.9/ref/templates/builtins/#std:templatetag-get_media_prefix
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10
+}

@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/3/20
+# @ 2017/3/21
 # @ PC
 # ----------------------------------
 
@@ -10,26 +10,127 @@ from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import os
-from .models import DeviceType, IDCInfo, OSType, EndUser, Cluster, BusinessUnit, RuntimeEnvironment, \
-    Machine, Vm
+from .models import Vendor, DeviceType, InstanceType, IDCInfo, OSType, \
+    EndUser, Cluster, BusinessUnit, RuntimeEnvironment, Machine, Vm
+
+from rest_framework import viewsets, permissions
+from .serializers import VendorSerializer, DeviceTypeSerializer, InstanceTypeSerializer, IDCInfoSerializer, \
+    OSTypeSerializer, EndUserSerializer, ClusterSerializer, BusinessUnitSerializer, RuntimeEnvironmentSerializer
 
 
 # Create your views here.
+# ================================ API ================================
+class VendorViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = Vendor.objects.all()
+    serializer_class = VendorSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
 
+class DeviceTypeViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = DeviceType.objects.all()
+    serializer_class = DeviceTypeSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class InstanceTypeViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = InstanceType.objects.all()
+    serializer_class = InstanceTypeSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class IDCInfoViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = IDCInfo.objects.all()
+    serializer_class = IDCInfoSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class OSTypeViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = OSType.objects.all()
+    serializer_class = OSTypeSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class EndUserViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = EndUser.objects.all()
+    serializer_class = EndUserSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class ClusterViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = Cluster.objects.all()
+    serializer_class = ClusterSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class BusinessUnitViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = BusinessUnit.objects.all()
+    serializer_class = BusinessUnitSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class RuntimeEnvironmentViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = RuntimeEnvironment.objects.all()
+    serializer_class = RuntimeEnvironmentSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+# ================================ TEST ================================
 def show_index(request):
-    """test only"""
+    """
+    index
+    """
     return render(request, 'assets/index.html')
 
 
 def show_about(request):
-    """test only"""
+    """
+    about
+    """
     return render(request, 'assets/about.html')
 
 
+# ================================ LIST ================================
 @login_required
 def list_hosts(request):
-    """list hosts"""
+    """
+    list hosts
+    """
     ## get filters
     try:
         biz_unit_id = int(request.GET.get('biz_unit'))
@@ -76,7 +177,9 @@ def list_hosts(request):
 
 @login_required
 def list_vms(request):
-    """list vms"""
+    """
+    list vms
+    """
     ## get filters
     try:
         biz_unit_id = int(request.GET.get('biz_unit'))
@@ -121,10 +224,12 @@ def list_vms(request):
     return render(request, 'assets/list_vms.html', context)
 
 
+# ================================ LIST ================================
 @login_required
 def import_hosts(request):
-    """ exp: how to import a list of hosts to db
-        tips: you have to prepare something before this step:
+    """
+    exp: how to import a list of hosts to db
+    tips: you have to prepare something before this step:
             cluster, model, os_type, operator, idc
     """
     host_status = {}
@@ -201,8 +306,9 @@ def import_hosts(request):
 
 @login_required
 def import_vms(request):
-    """ exp: how to import a list of vms to db
-        tips: you have to prepare something before this step:
+    """
+    exp: how to import a list of vms to db
+    tips: you have to prepare something before this step:
             host, os_type, operator
     """
     import_status = {}
