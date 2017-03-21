@@ -1,0 +1,1 @@
+[{"model": "accounts.myuser", "pk": 1, "fields": {"user": 1, "avatar": "avatars/default.png", "gender": "Secret", "nickname": "New User"}}]

@@ -1,6 +1,6 @@
 说明文件：django project "asset" 在centos7下的部署
 =======================================
-2017/3/20
+2017/3/21
 
 ####asset 是利用django后台实现的简易资源管理平台
 
@@ -24,7 +24,7 @@ prepare
 
 3. 试着运行一下 ::
 
-        先调整db配置（可以注释掉mysql相关的配置，仅使用sqlite来测试）：
+        默认使用的是sqlite，如果需要使用mysql之类的driver，请安装下列方式来调整db配置：
         [root@tvm001 www]# vim www/settings.py
         DATABASES = {
             'default': {
@@ -50,8 +50,11 @@ prepare
         [root@tvm001 www]# python manage.py test
         收集静态文件：
         [root@tvm001 www]# python manage.py collectstatic --no-input
+        导入 demo 数据来体验：
+        [root@tvm001 www]# python manage.py loaddata ./data/demo/dump_assets.json
+        [root@tvm001 www]# python manage.py loaddata ./data/demo/dump_accounts.json
 
-        django默认是启用了 DEBUG 选项，但 asset 这个项目的代码已经关闭 DEBUG 选项，并设置了一下内容：
+        django默认是启用了 DEBUG 选项，但 asset 这个项目的代码已经关闭 DEBUG 选项，并设置了以下内容：
         ALLOWED_HOSTS
         STATIC_URL STATIC_ROOT
         MEDIA_URL MEDIA_ROOT
