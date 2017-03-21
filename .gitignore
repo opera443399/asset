@@ -90,5 +90,5 @@ ENV/
 # IDEA Files
 .idea
 
-# django migration
-migrations/
+# default test db
+db.sqlite3
