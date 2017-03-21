@@ -12,7 +12,7 @@ prepare
         主要依赖：
         [root@tvm001 ~]# yum install python-pip
         [root@tvm001 ~]# pip install -r requirements.txt 
-        （当然，也可以不用mysql，仅使用sqlite来测试，后续若新增其他的app时，这里的依赖关系，熟悉python和pip的应该都知道怎么处理，不再唠叨）
+         (当然，也可以不用mysql，仅使用sqlite来测试，后续若新增其他的app时，这里的依赖关系，熟悉python和pip的应该都知道怎么处理，不再唠叨) 
 
 2. 调整 project setting ::
 
@@ -98,7 +98,7 @@ prepare
 4. admin后台 ::
 
         [root@tvm001 www]# python manage.py createsuperuser
-        根据提示创建root密码用于登录后台（上一步已经创建过，可略过）。
+        根据提示创建root密码用于登录后台 (上一步已经创建过，可略过) 。
         访问地址：http://you_server_ip/admin/
 
 
@@ -113,11 +113,11 @@ prepare
         设置可选语言：LANGUAGES
         [root@tvm01 www]# vim www/settings.py
         MIDDLEWARE_CLASSES = [
-            （略）
+             (略) 
             'django.contrib.sessions.middleware.SessionMiddleware',
             'django.middleware.locale.LocaleMiddleware',
             'django.middleware.common.CommonMiddleware',
-            （略）
+             (略) 
         ]
 
         LANGUAGES = [
@@ -128,7 +128,7 @@ prepare
         启用 django 自带的语言偏好设置的视图
         [root@tvm01 www]# vim www/urls.py
         urlpatterns = [
-            （略）
+             (略) 
             url(r'^i18n/', include('django.conf.urls.i18n')),
         ]
 
@@ -143,7 +143,7 @@ prepare
         [root@tvm01 asset]# django-admin compilemessages
         编译后的文件：locale/zh/LC_MESSAGES/django.mo
 
-        最后，重载（reload） web服务即可生效。
+        最后，重载 (reload)  web服务即可生效。
 
 
 7. Email ::
@@ -207,12 +207,12 @@ uwsgi+supervisord+nginx
 
         [root@tvm001 www]# whereis supervisord
 
-    4) 启动 supervisord 服务：
+    3) 启动 supervisord 服务：
 
         [root@tvm001 www]# /usr/bin/supervisord -c /etc/supervisord.conf
         [root@tvm001 www]# echo '/usr/bin/supervisord -c /etc/supervisord.conf' >>/etc/rc.local
 
-    5) 配置uwsgi服务：
+    4) 配置uwsgi服务：
 
         [root@tvm001 www]# cat /etc/supervisor.d/uwsgi.ini
         [program:uwsgi]
@@ -226,7 +226,7 @@ uwsgi+supervisord+nginx
         注：这里配置了 user，对应的，project的目录也应该是这个用户才能对示例中的本地数据库有读写权限。
         [root@tvm001 www]# chown nobody:nobody -R /opt/asset/latest/www
 
-    6）启动 uwsgi 服务：
+    5) 启动 uwsgi 服务：
 
         [root@tvm001 www]# supervisorctl reload
         Restarted supervisord
@@ -237,10 +237,9 @@ uwsgi+supervisord+nginx
         uwsgi 使用 --socket 方式，表示：通过socket来访问，因此后续可以用 nginx uwsgi 模块来访问。
         uwsgi 使用 --http 方式，表示：可以直接通过 http访问，因此后续可以用 nginx proxy 来访问。
 
+    6) 使用nginx来处理静态文件和转发请求到后端的uwsgi服务
 
-    7) 使用nginx来处理静态文件和转发请求到后端的uwsgi服务
-
-        a）nginx uwsgi
+        a) nginx uwsgi
         [root@tvm001 www]# cat /etc/nginx/conf.d/www.conf
         server {
             listen 80 default;
@@ -261,7 +260,7 @@ uwsgi+supervisord+nginx
             }
         }
 
-        b）nginx proxy
+        b) nginx proxy
         [root@tvm001 www]# cat /etc/nginx/conf.d/www.conf
         upstream backend {
             server 127.0.0.1:8090;
