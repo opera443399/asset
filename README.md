@@ -1,6 +1,6 @@
 说明文件：django project "asset" 在centos7下的部署
 =======================================
-2017/3/21
+2017/3/23
 
 ####asset 是利用django后台实现的简易资源管理平台
 
@@ -9,10 +9,18 @@ prepare
 -------
 1. pip+django+mysql ::
 
-        主要依赖：
+        解决依赖关系：
         [root@tvm001 ~]# yum install python-pip
         [root@tvm001 ~]# pip install -r requirements.txt 
-         (当然，也可以不用mysql，仅使用sqlite来测试，后续若新增其他的app时，这里的依赖关系，熟悉python和pip的应该都知道怎么处理，不再唠叨) 
+         (当然，也可以不用mysql，仅使用sqlite来测试，后续若新增或减少某个app时，这里的依赖关系，熟悉python和pip的应该都知道怎么处理，不再唠叨)
+        依赖示例（后续版本可能会变化）：
+        [root@tvm001 ~]# cat requirements.txt 
+        Django==1.9.1（django框架）
+        MySQL-python==1.2.5（django+mysql，注意，django支持多个backend，推荐的是mysqlclient）
+        Pillow==3.1.1（图像处理）
+        pytz==2015.7（tz）
+        coreapi==2.3.0（django api schema）
+        djangorestframework==3.6.2 （django api 框架）
 
 2. 调整 project setting ::
 
@@ -193,97 +201,97 @@ uwsgi+supervisord+nginx
         uwsgi: /usr/bin/uwsgi
 
 2. 配置 ::
-
-    1) 收集django项目的static文件：
-
-        [root@tvm001 www]# python manage.py collectstatic
-
-    2) 使用supervisor来管理uwsgi服务，用uwsgi来运行django：
-
-        [root@tvm001 www]# # echo_supervisord_conf > /etc/supervisord.conf \
-        && mkdir /etc/supervisor.d \
-        && echo -e '[include]\nfiles=/etc/supervisor.d/*.ini' >>/etc/supervisord.conf \
-        && grep ^[^\;] /etc/supervisord.conf
-
-        [root@tvm001 www]# whereis supervisord
-
-    3) 启动 supervisord 服务：
-
-        [root@tvm001 www]# /usr/bin/supervisord -c /etc/supervisord.conf
-        [root@tvm001 www]# echo '/usr/bin/supervisord -c /etc/supervisord.conf' >>/etc/rc.local
-
-    4) 配置uwsgi服务：
-
-        [root@tvm001 www]# cat /etc/supervisor.d/uwsgi.ini
-        [program:uwsgi]
-        command=/usr/bin/uwsgi --socket 127.0.0.1:8090 --chdir /opt/asset/latest/www --module www.wsgi
-        user=nobody
-        autostart=true
-        autorestart=true
-        stdout_logfile=/tmp/asset.stdout.log
-        stderr_logfile=/tmp/asset.stderr.log
-
-        注：这里配置了 user，对应的，project的目录也应该是这个用户才能对示例中的本地数据库有读写权限。
-        [root@tvm001 www]# chown nobody:nobody -R /opt/asset/latest/www
-
-    5) 启动 uwsgi 服务：
-
-        [root@tvm001 www]# supervisorctl reload
-        Restarted supervisord
-        [root@tvm001 www]# supervisorctl status
-        uwsgi                            RUNNING   pid 5303, uptime 0:00:04
-
-        说明：
-        uwsgi 使用 --socket 方式，表示：通过socket来访问，因此后续可以用 nginx uwsgi 模块来访问。
-        uwsgi 使用 --http 方式，表示：可以直接通过 http访问，因此后续可以用 nginx proxy 来访问。
-
-    6) 使用nginx来处理静态文件和转发请求到后端的uwsgi服务
-
-        a) nginx uwsgi
-        [root@tvm001 www]# cat /etc/nginx/conf.d/www.conf
-        server {
-            listen 80 default;
-            server_name www.test.com;
-            charset utf-8;
-            
-            location /static {
-                alias /opt/asset/latest/www/static;
+    
+        1) 收集django项目的static文件：
+    
+            [root@tvm001 www]# python manage.py collectstatic
+    
+        2) 使用supervisor来管理uwsgi服务，用uwsgi来运行django：
+    
+            [root@tvm001 www]# # echo_supervisord_conf > /etc/supervisord.conf \
+            && mkdir /etc/supervisor.d \
+            && echo -e '[include]\nfiles=/etc/supervisor.d/*.ini' >>/etc/supervisord.conf \
+            && grep ^[^\;] /etc/supervisord.conf
+    
+            [root@tvm001 www]# whereis supervisord
+    
+        3) 启动 supervisord 服务：
+    
+            [root@tvm001 www]# /usr/bin/supervisord -c /etc/supervisord.conf
+            [root@tvm001 www]# echo '/usr/bin/supervisord -c /etc/supervisord.conf' >>/etc/rc.local
+    
+        4) 配置uwsgi服务：
+    
+            [root@tvm001 www]# cat /etc/supervisor.d/uwsgi.ini
+            [program:uwsgi]
+            command=/usr/bin/uwsgi --socket 127.0.0.1:8090 --chdir /opt/asset/latest/www --module www.wsgi
+            user=nobody
+            autostart=true
+            autorestart=true
+            stdout_logfile=/tmp/asset.stdout.log
+            stderr_logfile=/tmp/asset.stderr.log
+    
+            注：这里配置了 user，对应的，project的目录也应该是这个用户才能对示例中的本地数据库有读写权限。
+            [root@tvm001 www]# chown nobody:nobody -R /opt/asset/latest/www
+    
+        5) 启动 uwsgi 服务：
+    
+            [root@tvm001 www]# supervisorctl reload
+            Restarted supervisord
+            [root@tvm001 www]# supervisorctl status
+            uwsgi                            RUNNING   pid 5303, uptime 0:00:04
+    
+            说明：
+            uwsgi 使用 --socket 方式，表示：通过socket来访问，因此后续可以用 nginx uwsgi 模块来访问。
+            uwsgi 使用 --http 方式，表示：可以直接通过 http访问，因此后续可以用 nginx proxy 来访问。
+    
+        6) 使用nginx来处理静态文件和转发请求到后端的uwsgi服务
+    
+            a) nginx uwsgi
+            [root@tvm001 www]# cat /etc/nginx/conf.d/www.conf
+            server {
+                listen 80 default;
+                server_name www.test.com;
+                charset utf-8;
+                
+                location /static {
+                    alias /opt/asset/latest/www/static;
+                }
+                
+                location /media {
+                    alias /opt/asset/latest/www/media;
+                }
+                
+                location / {
+                    uwsgi_pass 127.0.0.1:8090;
+                    include uwsgi_params;
+                }
             }
-            
-            location /media {
-                alias /opt/asset/latest/www/media;
+    
+            b) nginx proxy
+            [root@tvm001 www]# cat /etc/nginx/conf.d/www.conf
+            upstream backend {
+                server 127.0.0.1:8090;
             }
-            
-            location / {
-                uwsgi_pass 127.0.0.1:8090;
-                include uwsgi_params;
+    
+            server {
+                listen 80 default;
+                server_name www.test.com;
+                charset utf-8;
+                
+                location /static {
+                    alias /opt/asset/latest/www/static;
+                }
+                
+                location /media {
+                    alias /opt/asset/latest/www/media;
+                }
+                
+                location / {
+                    proxy_pass http://backend;
+                }
             }
-        }
-
-        b) nginx proxy
-        [root@tvm001 www]# cat /etc/nginx/conf.d/www.conf
-        upstream backend {
-            server 127.0.0.1:8090;
-        }
-
-        server {
-            listen 80 default;
-            server_name www.test.com;
-            charset utf-8;
-            
-            location /static {
-                alias /opt/asset/latest/www/static;
-            }
-            
-            location /media {
-                alias /opt/asset/latest/www/media;
-            }
-            
-            location / {
-                proxy_pass http://backend;
-            }
-        }
-
-        (centos7)
-        [root@tvm001 www]# systemctl start nginx.service
-        [root@tvm001 www]# systemctl enable nginx.service
+    
+            (centos7)
+            [root@tvm001 www]# systemctl start nginx.service
+            [root@tvm001 www]# systemctl enable nginx.service
