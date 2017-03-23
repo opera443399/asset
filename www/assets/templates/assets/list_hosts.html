@@ -93,16 +93,10 @@
                     <td>{{ a.model }}</td>
                     <td>{{ a.os_ip_lan_mgmt }}</td>
                     <td>{{ a.os_type }}</td>
-                    <td>
-                        {% if a.is_online %}
-                            {% trans 'Online' %}
-                        {% else %}
-                            {% trans 'Offline' %}
-                        {% endif %}
-                    </td>
+                    <td>{{ a.is_online|yesno:"Online,Offline" }}</td>
                     <td>{{ a.run_env }}</td>
                     <td>{{ a.biz_unit }}</td>
-                    <td>{{ a.app_desc }}</td>
+                    <td>{{ a.app_desc|truncatechars:20 }}</td>
                     <td>{{ a.operator }}</td>
                 </tr>
             {% endfor %}
