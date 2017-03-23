@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-13 20:15+0800\n"
+"POT-Creation-Date: 2017-03-23 15:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:66 admin.py:91 templates/hosts/list_hosts.html.py:27
-#: templates/hosts/list_vms.html:27
+#: admin.py:66 admin.py:91 templates/assets/list_hosts.html.py:81
+#: templates/assets/list_vms.html:81
 msgid "OS"
 msgstr "OS"
 
@@ -25,8 +25,8 @@ msgstr "OS"
 msgid "APP"
 msgstr "应用"
 
-#: admin.py:70 admin.py:93 templates/hosts/list_hosts.html.py:28
-#: templates/hosts/list_vms.html:28
+#: admin.py:70 admin.py:93 templates/assets/list_hosts.html.py:82
+#: templates/assets/list_vms.html:82
 msgid "Status"
 msgstr "状态"
 
@@ -136,7 +136,7 @@ msgid "Department"
 msgstr "部门"
 
 #: models.py:106 models.py:107 models.py:167 models.py:227
-#: templates/hosts/list_hosts.html:32 templates/hosts/list_vms.html.py:32
+#: templates/assets/list_hosts.html:86 templates/assets/list_vms.html.py:86
 msgid "EndUser"
 msgstr "使用者"
 
@@ -145,17 +145,19 @@ msgid "Cluster"
 msgstr "集群"
 
 #: models.py:132 models.py:133 models.py:165 models.py:225
-#: templates/hosts/list_hosts.html:30 templates/hosts/list_vms.html.py:30
+#: templates/assets/list_hosts.html:10 templates/assets/list_hosts.html:84
+#: templates/assets/list_vms.html.py:10 templates/assets/list_vms.html:84
 msgid "BizUnit"
 msgstr "业务单元"
 
 #: models.py:145 models.py:146 models.py:166 models.py:226
-#: templates/hosts/list_hosts.html:29 templates/hosts/list_vms.html.py:29
+#: templates/assets/list_hosts.html:35 templates/assets/list_hosts.html:83
+#: templates/assets/list_vms.html.py:35 templates/assets/list_vms.html:83
 msgid "RunEnv"
 msgstr "运行环境"
 
-#: models.py:150 models.py:208 templates/hosts/list_hosts.html.py:24
-#: templates/hosts/list_vms.html:24
+#: models.py:150 models.py:208 templates/assets/list_hosts.html.py:78
+#: templates/assets/list_vms.html:78
 msgid "Hostname"
 msgstr "主机名"
 
@@ -295,100 +297,105 @@ msgstr "vm备注"
 msgid "VMs"
 msgstr "虚拟机"
 
-#: templates/hosts/about.html:6
+#: templates/assets/about.html:6
 msgid "#ops works# from 2016 to 2017."
 msgstr ""
 
-#: templates/hosts/i18n.html:10
+#: templates/assets/i18n.html:10
 msgid "Region Select"
 msgstr "语言"
 
-#: templates/hosts/index.html:3
-msgid "index"
-msgstr "首页"
-
-#: templates/hosts/index.html:8
-msgid "ops resource management."
-msgstr "运维资源管理平台"
-
-#: templates/hosts/list_hosts.html:3 templates/hosts/list_hosts.html.py:21
-#: templates/hosts/nav.html:26 templates/hosts/nav.html.py:41
-msgid "Host"
-msgstr "宿主机"
-
-#: templates/hosts/list_hosts.html:8 templates/hosts/list_vms.html.py:8
-msgid "Previous"
-msgstr "上一页"
-
-#: templates/hosts/list_hosts.html:15 templates/hosts/list_vms.html.py:15
-msgid "Next"
-msgstr "下一页"
-
-#: templates/hosts/list_hosts.html:25 templates/hosts/list_vms.html.py:25
-msgid "Type"
-msgstr "类型"
-
-#: templates/hosts/list_hosts.html:26 templates/hosts/list_vms.html.py:26
-msgid "IP"
-msgstr ""
-
-#: templates/hosts/list_hosts.html:31 templates/hosts/list_vms.html.py:31
-msgid "Desc"
-msgstr "描述"
-
-#: templates/hosts/list_hosts.html:44 templates/hosts/list_vms.html.py:44
-msgid "Online"
-msgstr "在线"
-
-#: templates/hosts/list_hosts.html:46 templates/hosts/list_vms.html.py:46
-msgid "Offline"
-msgstr "离线"
-
-#: templates/hosts/list_hosts.html:60 templates/hosts/list_vms.html.py:60
-msgid "Not available."
-msgstr "无记录。"
-
-#: templates/hosts/list_vms.html:3 templates/hosts/list_vms.html.py:21
-#: templates/hosts/nav.html:30 templates/hosts/nav.html.py:45
-msgid "VM"
-msgstr "虚拟机"
-
-#: templates/hosts/nav.html:11
-msgid "Back Home? Click me."
-msgstr "回首页？请点我"
-
-#: templates/hosts/nav.html:21
+#: templates/assets/import.html:3 templates/assets/nav.html.py:21
 msgid "Import"
 msgstr "导入数据"
 
-#: templates/hosts/nav.html:36
+#: templates/assets/index.html:3
+msgid "index"
+msgstr "首页"
+
+#: templates/assets/index.html:8
+msgid "ops resource management."
+msgstr "运维资源管理平台"
+
+#: templates/assets/list_hosts.html:3 templates/assets/list_hosts.html:75
+#: templates/assets/nav.html.py:26 templates/assets/nav.html:41
+msgid "Host"
+msgstr "宿主机"
+
+#: templates/assets/list_hosts.html:16 templates/assets/list_hosts.html:41
+#: templates/assets/list_vms.html.py:16 templates/assets/list_vms.html:41
+msgid "All"
+msgstr "全部"
+
+#: templates/assets/list_hosts.html:61 templates/assets/list_vms.html.py:61
+msgid "Previous"
+msgstr "上一页"
+
+#: templates/assets/list_hosts.html:69 templates/assets/list_vms.html.py:69
+msgid "Next"
+msgstr "下一页"
+
+#: templates/assets/list_hosts.html:79 templates/assets/list_vms.html.py:79
+msgid "Type"
+msgstr "类型"
+
+#: templates/assets/list_hosts.html:80 templates/assets/list_vms.html.py:80
+msgid "IP"
+msgstr ""
+
+#: templates/assets/list_hosts.html:85 templates/assets/list_vms.html.py:85
+msgid "Desc"
+msgstr "描述"
+
+#: templates/assets/list_hosts.html:98 templates/assets/list_vms.html.py:98
+msgid "Online"
+msgstr "在线"
+
+#: templates/assets/list_hosts.html:100 templates/assets/list_vms.html:100
+msgid "Offline"
+msgstr "离线"
+
+#: templates/assets/list_hosts.html:114 templates/assets/list_vms.html:114
+msgid "Not available."
+msgstr "无记录。"
+
+#: templates/assets/list_vms.html:3 templates/assets/list_vms.html.py:75
+#: templates/assets/nav.html:30 templates/assets/nav.html.py:45
+msgid "VM"
+msgstr "虚拟机"
+
+#: templates/assets/nav.html:11
+msgid "Back Home? Click me."
+msgstr "回首页？请点我"
+
+#: templates/assets/nav.html:36
 msgid "Resource"
 msgstr "资源"
 
-#: templates/hosts/nav.html:50
+#: templates/assets/nav.html:50
 msgid "About"
 msgstr "关于"
 
-#: templates/hosts/nav.html:58
+#: templates/assets/nav.html:58
 msgid "View profile"
 msgstr "查看用户信息"
 
-#: templates/hosts/nav.html:64
+#: templates/assets/nav.html:64
 msgid "Signed in as"
 msgstr "已登录为: "
 
-#: templates/hosts/nav.html:71
+#: templates/assets/nav.html:71
 msgid "Your profile"
 msgstr "用户信息"
 
-#: templates/hosts/nav.html:76
+#: templates/assets/nav.html:76
 msgid "Management"
 msgstr "管理"
 
-#: templates/hosts/nav.html:82
+#: templates/assets/nav.html:82
 msgid "Sign out"
 msgstr "注销"
 
-#: templates/hosts/nav.html:90
+#: templates/assets/nav.html:90
 msgid "Sign in"
 msgstr "登录"
