@@ -5,9 +5,11 @@
     <div class="row">
         <div class="col-xs-offset-1 col-xs-10 col-sm-11 text-right">
             <form class="form-inline" role="form" id="form-searching" action="{% url 'assets:list_hosts' %}" method="get">
-                <div class="form-group">
+                <div class="input-group">
                     <input class="form-control" type="text" id="q" name="q" placeholder="{{ q|default:"lookup the hostname?" }}" maxlength="20">
-                    <button type="button" class="btn btn-primary" id="search">{% trans 'Search' %}</button>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="search">{% trans 'Search' %}</button>
+                    </span>
                 </div>
             </form>
         </div>
