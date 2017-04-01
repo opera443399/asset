@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/3/30
+# @ 2017/4/1
 # @ PC
 # ----------------------------------
 
@@ -150,7 +150,6 @@ def list_hosts(request):
 
         try:
             q = request.GET.get('q')
-            print(q)
             default_data = default_data.filter(hostname__contains=q)
         except (KeyError, ValueError):
             q = ''
@@ -213,7 +212,6 @@ def list_vms(request):
 
         try:
             q = request.GET.get('q')
-            print(q)
             default_data = default_data.filter(hostname__contains=q)
         except (KeyError, ValueError):
             q = ''
