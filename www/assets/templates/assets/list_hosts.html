@@ -21,7 +21,7 @@
     <!-- input-for-search End -->
     <!-- form-for-select Start -->
     <div class="row">
-        <div class="col-md-3 col-sm-2 text-left">
+        <div class="col-sm-4 text-left">
             <form class="form-inline" role="form" id="form-bizunit" action="{% url 'assets:update_hosts' %}" method="post">{% csrf_token %}
                 <input type="hidden" name="checked_item_ids_bizunit" value="">
                 <div class="form-group">
@@ -37,7 +37,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-3 col-sm-2 text-left">
+        <div class="col-sm-4 text-left">
             <form class="form-inline" role="form" id="form-runenv" action="{% url 'assets:update_hosts' %}" method="post">{% csrf_token %}
                 <input type="hidden" name="checked_item_ids_runenv" value="">
                 <div class="form-group">
