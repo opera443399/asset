@@ -1,13 +1,15 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/4/1
+# @ 2017/4/2
 # @ PC
 # ----------------------------------
 
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 import os
 from .models import Vendor, DeviceType, InstanceType, IDCInfo, OSType, \
@@ -137,7 +139,7 @@ def list_hosts(request):
     default_data = Machine.objects.order_by('-run_env')
 
     if request.method == 'GET':
-        ## get filters
+        # get filters
         try:
             biz_unit_id = int(request.GET.get('biz_unit'))
         except (KeyError, ValueError, TypeError):
@@ -154,7 +156,7 @@ def list_hosts(request):
         except (KeyError, ValueError):
             q = ''
 
-    ## filtering
+    # filtering
     if biz_unit_id == 0 and run_env_id == 0:
         data = default_data
     elif biz_unit_id != 0 and run_env_id == 0:
@@ -164,8 +166,8 @@ def list_hosts(request):
     else:
         data = default_data.filter(biz_unit=biz_unit_id).filter(run_env=run_env_id).order_by('-run_env')
 
-    ## pagenation: show 10 rows per page
-    paginator = Paginator(data, 10)
+    # pagenation: show 20 rows per page
+    paginator = Paginator(data, 20)
     page = request.GET.get('page')
     try:
         list_of_hosts = paginator.page(page)
@@ -199,7 +201,7 @@ def list_vms(request):
     default_data = Vm.objects.order_by('-run_env')
 
     if request.method == 'GET':
-        ## get filters
+        # get filters
         try:
             biz_unit_id = int(request.GET.get('biz_unit'))
         except (KeyError, ValueError, TypeError):
@@ -216,7 +218,7 @@ def list_vms(request):
         except (KeyError, ValueError):
             q = ''
 
-    ## filtering
+    # filtering
     if biz_unit_id == 0 and run_env_id == 0:
         data = default_data.order_by('-run_env')
     elif biz_unit_id != 0 and run_env_id == 0:
@@ -226,8 +228,8 @@ def list_vms(request):
     else:
         data = default_data.filter(biz_unit=biz_unit_id).filter(run_env=run_env_id).order_by('-run_env')
 
-    ## pagenation: show 10 rows per page
-    paginator = Paginator(data, 10)
+    # pagenation: show 20 rows per page
+    paginator = Paginator(data, 20)
     page = request.GET.get('page')
     try:
         list_of_vms = paginator.page(page)
@@ -250,6 +252,107 @@ def list_vms(request):
     return render(request, 'assets/list_vms.html', context)
 
 
+# ================================ UPDATE ================================
+@login_required
+def update_hosts(request):
+    """
+    update hosts
+    """
+    msgs = ''
+    if request.method == 'POST':
+        try:
+            if 'select-bizunit' in request.POST and len(request.POST['checked_item_ids_bizunit']) > 0:
+                biz_unit_id = int(request.POST['select-bizunit'])
+                checked_ids_bizunit = request.POST['checked_item_ids_bizunit']
+                host_ids = [int(x) for x in checked_ids_bizunit.split('-')]
+                print('[I] biz_unit_changed:')
+                print('biz_unit_id: ', biz_unit_id)
+                print('host_ids', host_ids)
+                obj_biz_unit = get_object_or_404(BusinessUnit, pk=biz_unit_id)
+                msgs += 'move hosts: ['
+                for hid in host_ids:
+                    obj_host = get_object_or_404(Machine, pk=hid)
+                    obj_host.biz_unit = obj_biz_unit
+                    obj_host.dt_modified = timezone.now()
+                    obj_host.save()
+                    msgs += '{0}, '.format(obj_host.hostname)
+
+                msgs += '] to biz_unit: [{0}]'.format(obj_biz_unit.name)
+
+            elif 'select-runenv' in request.POST and len(request.POST['checked_item_ids_runenv']) > 0:
+                run_env_id = int(request.POST['select-runenv'])
+                checked_ids_runenv = request.POST['checked_item_ids_runenv']
+                host_ids = [int(x) for x in checked_ids_runenv.split('-')]
+                print('[I] run_env_changed:')
+                print('run_env_id', run_env_id)
+                print('host_ids', host_ids)
+                obj_run_env = get_object_or_404(RuntimeEnvironment, pk=run_env_id)
+                msgs += 'move hosts: ['
+                for hid in host_ids:
+                    obj_host = get_object_or_404(Machine, pk=hid)
+                    obj_host.run_env = obj_run_env
+                    obj_host.dt_modified = timezone.now()
+                    obj_host.save()
+                    msgs += '{0}, '.format(obj_host.hostname)
+                msgs += '] to run_env: [{0}]'.format(obj_run_env.name)
+
+        except (KeyError, ValueError, TypeError) as e:
+            msgs = e
+
+    print(msgs)
+    return HttpResponseRedirect(reverse('assets:list_hosts'))
+
+
+@login_required
+def update_vms(request):
+    """
+    update vms
+    """
+    msgs = ''
+    if request.method == 'POST':
+        try:
+            if 'select-bizunit' in request.POST and len(request.POST['checked_item_ids_bizunit']) > 0:
+                biz_unit_id = int(request.POST['select-bizunit'])
+                checked_ids_bizunit = request.POST['checked_item_ids_bizunit']
+                vm_ids = [int(x) for x in checked_ids_bizunit.split('-')]
+                print('[I] biz_unit_changed:')
+                print('biz_unit_id: ', biz_unit_id)
+                print('vm_ids', vm_ids)
+                obj_biz_unit = get_object_or_404(BusinessUnit, pk=biz_unit_id)
+                msgs += 'move vms: ['
+                for vmid in vm_ids:
+                    obj_vm = get_object_or_404(Vm, pk=vmid)
+                    obj_vm.biz_unit = obj_biz_unit
+                    obj_vm.dt_modified = timezone.now()
+                    obj_vm.save()
+                    msgs += '{0}, '.format(obj_vm.hostname)
+
+                msgs += '] to biz_unit: [{0}]'.format(obj_biz_unit.name)
+
+            elif 'select-runenv' in request.POST and len(request.POST['checked_item_ids_runenv']) > 0:
+                run_env_id = int(request.POST['select-runenv'])
+                checked_ids_runenv = request.POST['checked_item_ids_runenv']
+                vm_ids = [int(x) for x in checked_ids_runenv.split('-')]
+                print('[I] run_env_changed:')
+                print('run_env_id', run_env_id)
+                print('vm_ids', vm_ids)
+                obj_run_env = get_object_or_404(RuntimeEnvironment, pk=run_env_id)
+                msgs += 'move vms: ['
+                for vmid in vm_ids:
+                    obj_vm = get_object_or_404(Vm, pk=vmid)
+                    obj_vm.run_env = obj_run_env
+                    obj_vm.dt_modified = timezone.now()
+                    obj_vm.save()
+                    msgs += '{0}, '.format(obj_vm.hostname)
+                msgs += '] to run_env: [{0}]'.format(obj_run_env.name)
+
+        except (KeyError, ValueError, TypeError) as e:
+            msgs = e
+
+    print(msgs)
+    return HttpResponseRedirect(reverse('assets:list_vms'))
+
+
 # ================================ IMPORT ================================
 @login_required
 def import_hosts(request):
@@ -260,7 +363,7 @@ def import_hosts(request):
     """
     host_status = {}
     import_count_ok = import_count_fail = 0
-    ##cwd()/data/import/*.csv
+    # cwd()/data/import/*.csv
     f_data = "{0}{1}data{1}import{1}{2}".format(os.getcwd(), os.sep, 'hosts.csv')
     with open(f_data) as f:
         for line in f:
@@ -339,7 +442,7 @@ def import_vms(request):
     """
     import_status = {}
     import_count_ok = import_count_fail = 0
-    ##cwd()/data/import/*.csv
+    # cwd()/data/import/*.csv
     f_data = "{0}{1}data{1}import{1}{2}".format(os.getcwd(), os.sep, 'vms.csv')
     with open(f_data) as f:
         for line in f:

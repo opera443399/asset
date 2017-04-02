@@ -19,8 +19,44 @@
         </div>
     </div>
     <!-- input-for-search End -->
+    <!-- form-for-select Start -->
+    <div class="row">
+        <div class="col-sm-2 text-left">
+            <form class="form-inline" role="form" id="form-bizunit" action="{% url 'assets:update_hosts' %}" method="post">{% csrf_token %}
+                <input type="hidden" name="checked_item_ids_bizunit" value="">
+                <div class="form-group">
+                    <label for="select-bizunit"></label>
+                    <select class="form-control input-sm" id="select-bizunit" name="select-bizunit">
+                    <option value="" selected="selected">{% trans 'BizUnit' %}</option>
+                    {% for b in biz_units %}
+                        <option value="{{ b.id }}">
+                            {{ b.name }} ({{ b.desc }})
+                        </option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2 text-left">
+            <form class="form-inline" role="form" id="form-runenv" action="{% url 'assets:update_hosts' %}" method="post">{% csrf_token %}
+                <input type="hidden" name="checked_item_ids_runenv" value="">
+                <div class="form-group">
+                    <label for="select-runenv"></label>
+                    <select class="form-control input-sm" id="select-runenv" name="select-runenv">
+                    <option value="" selected="selected">{% trans 'RunEnv' %}</option>
+                    {% for e in run_envs %}
+                        <option value="{{ e.id }}">
+                            {{ e.name }} ({{ e.desc }})
+                        </option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- form-for-select End -->
     <br/>
-    <!-- Data List Start -->
+    <!-- list_of_hosts Start -->
 {% if list_of_hosts %}
     <div class="row text-center">
         {% if list_of_hosts.has_previous %}
@@ -77,7 +113,7 @@
         <p><strong>{% trans 'Not available.' %}</strong></p>
     </div>
 {% endif %}
-    <!-- Data List End -->
+    <!-- list_of_hosts End -->
 
     <!-- i18n Start -->
     {% include "assets/i18n.html" %}
