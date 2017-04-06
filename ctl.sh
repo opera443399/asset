@@ -1,22 +1,25 @@
 #!/bin/bash
 # 
 # django run by uwsgi with supervisor
-# 2017/1/5
+# 2017/4/6
 
 # default src path
 source_path='/opt/asset/latest'
 
 function do_c(){
+    echo '[+] do collectstatic'
     cd "${source_path}/www"
     ${PY27} manage.py collectstatic --no-input
 }
 
 function do_t(){
+    echo '[+] do test'
     cd "${source_path}/www"
     ${PY27} manage.py test
 }
 
 function do_r(){
+    echo '[+] do reload'
     chown nobody:nobody -R "${source_path}/www"
     supervisorctl status
     supervisorctl reload
@@ -41,7 +44,6 @@ case $1 in
     c|r|t)
         PATH=$PATH:/usr/local/sbin:/usr/local/bin && export PATH
         python -c 'import sys;print sys.version' |grep '2.7' && PY27='python' || PY27='python2.7'
-        ${PY27} -c 'import sys;print sys.version' 
         [ -z $2 ] || source_path=$2
         do_$1
         ;;
