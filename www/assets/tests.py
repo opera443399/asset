@@ -123,7 +123,7 @@ class VendorTests(APITestCase):
         self.client = APIClient()
         self.user = User.objects.create_user('t01', email='t01@test.com', password='t01t02t03')
         self.user.save()
-        self.default_test_url = '/api/v1/vendors/'
+        self.default_test_uri = '/api/v1/vendors/'
         self.default_test_data = {'name': 'tttt_01', 'desc': 'tttt_02'}
         self.default_test_data_err = {'name': 'tttt_01_length_over_20', 'desc': 'tttt_02'}
         self.default_model = Vendor
@@ -135,7 +135,7 @@ class VendorTests(APITestCase):
         """
         Ensure we can create a new object without auth.
         """
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -146,7 +146,7 @@ class VendorTests(APITestCase):
         but with a situation: len(some_field) > max_allowed_characters
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data_err
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -156,7 +156,7 @@ class VendorTests(APITestCase):
         Ensure we can create a new object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -168,7 +168,7 @@ class VendorTests(APITestCase):
         Ensure we can list the objects with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -182,7 +182,7 @@ class VendorTests(APITestCase):
         Ensure we can retrieve a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -203,7 +203,7 @@ class VendorTests(APITestCase):
         Ensure we can update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -225,7 +225,7 @@ class VendorTests(APITestCase):
         Ensure we can partial update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -247,7 +247,7 @@ class VendorTests(APITestCase):
         Ensure we can destroy a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -269,7 +269,7 @@ class DeviceTypeTests(APITestCase):
         self.client = APIClient()
         self.user = User.objects.create_user('t01', email='t01@test.com', password='t01t02t03')
         self.user.save()
-        self.default_test_url = '/api/v1/models/'
+        self.default_test_uri = '/api/v1/models/'
         self.default_test_data = {'tag': 'tttt_01', 'desc': 'tttt_02'}
         self.default_test_data_err = {'tag': 'tttt_01_length_over_10', 'desc': 'tttt_02'}
         self.default_model = DeviceType
@@ -281,7 +281,7 @@ class DeviceTypeTests(APITestCase):
         """
         Ensure we can create a new object without auth.
         """
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -292,7 +292,7 @@ class DeviceTypeTests(APITestCase):
         but with a situation: len(some_field) > max_allowed_characters
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data_err
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -302,7 +302,7 @@ class DeviceTypeTests(APITestCase):
         Ensure we can create a new object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -314,7 +314,7 @@ class DeviceTypeTests(APITestCase):
         Ensure we can list the objects with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -328,7 +328,7 @@ class DeviceTypeTests(APITestCase):
         Ensure we can retrieve a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -349,7 +349,7 @@ class DeviceTypeTests(APITestCase):
         Ensure we can update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -371,7 +371,7 @@ class DeviceTypeTests(APITestCase):
         Ensure we can partial update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -393,7 +393,7 @@ class DeviceTypeTests(APITestCase):
         Ensure we can destroy a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -415,7 +415,7 @@ class InstanceTypeTests(APITestCase):
         self.client = APIClient()
         self.user = User.objects.create_user('t01', email='t01@test.com', password='t01t02t03')
         self.user.save()
-        self.default_test_url = '/api/v1/offerings/'
+        self.default_test_uri = '/api/v1/offerings/'
         self.default_test_data = {'tag': 'tttt_01', 'desc': 'tttt_02'}
         self.default_test_data_err = {'tag': 'tttt_01_length_over_10', 'desc': 'tttt_02'}
         self.default_model = InstanceType
@@ -427,7 +427,7 @@ class InstanceTypeTests(APITestCase):
         """
         Ensure we can create a new object without auth.
         """
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -438,7 +438,7 @@ class InstanceTypeTests(APITestCase):
         but with a situation: len(some_field) > max_allowed_characters
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data_err
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -448,7 +448,7 @@ class InstanceTypeTests(APITestCase):
         Ensure we can create a new object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -460,7 +460,7 @@ class InstanceTypeTests(APITestCase):
         Ensure we can list the objects with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -474,7 +474,7 @@ class InstanceTypeTests(APITestCase):
         Ensure we can retrieve a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -495,7 +495,7 @@ class InstanceTypeTests(APITestCase):
         Ensure we can update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -517,7 +517,7 @@ class InstanceTypeTests(APITestCase):
         Ensure we can partial update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -539,7 +539,7 @@ class InstanceTypeTests(APITestCase):
         Ensure we can destroy a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -561,7 +561,7 @@ class IDCInfoTests(APITestCase):
         self.client = APIClient()
         self.user = User.objects.create_user('t01', email='t01@test.com', password='t01t02t03')
         self.user.save()
-        self.default_test_url = '/api/v1/idcs/'
+        self.default_test_uri = '/api/v1/idcs/'
         self.default_test_data = {'tag': 'tttt_01', 'desc': 'tttt_02'}
         self.default_test_data_err = {'tag': 'tttt_01_length_over_10', 'desc': 'tttt_02'}
         self.default_model = IDCInfo
@@ -573,7 +573,7 @@ class IDCInfoTests(APITestCase):
         """
         Ensure we can create a new object without auth.
         """
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -584,7 +584,7 @@ class IDCInfoTests(APITestCase):
         but with a situation: len(some_field) > max_allowed_characters
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data_err
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -594,7 +594,7 @@ class IDCInfoTests(APITestCase):
         Ensure we can create a new object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -606,7 +606,7 @@ class IDCInfoTests(APITestCase):
         Ensure we can list the objects with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -620,7 +620,7 @@ class IDCInfoTests(APITestCase):
         Ensure we can retrieve a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -641,7 +641,7 @@ class IDCInfoTests(APITestCase):
         Ensure we can update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -663,7 +663,7 @@ class IDCInfoTests(APITestCase):
         Ensure we can partial update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -685,7 +685,7 @@ class IDCInfoTests(APITestCase):
         Ensure we can destroy a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -707,7 +707,7 @@ class OSTypeTests(APITestCase):
         self.client = APIClient()
         self.user = User.objects.create_user('t01', email='t01@test.com', password='t01t02t03')
         self.user.save()
-        self.default_test_url = '/api/v1/os/'
+        self.default_test_uri = '/api/v1/os/'
         self.default_test_data = {'tag': 'tttt_01', 'desc': 'tttt_02'}
         self.default_test_data_err = {'tag': 'tttt_01_length_over_20', 'desc': 'tttt_02'}
         self.default_model = OSType
@@ -719,7 +719,7 @@ class OSTypeTests(APITestCase):
         """
         Ensure we can create a new object without auth.
         """
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -730,7 +730,7 @@ class OSTypeTests(APITestCase):
         but with a situation: len(some_field) > max_allowed_characters
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data_err
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -740,7 +740,7 @@ class OSTypeTests(APITestCase):
         Ensure we can create a new object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -752,7 +752,7 @@ class OSTypeTests(APITestCase):
         Ensure we can list the objects with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -766,7 +766,7 @@ class OSTypeTests(APITestCase):
         Ensure we can retrieve a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -787,7 +787,7 @@ class OSTypeTests(APITestCase):
         Ensure we can update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -809,7 +809,7 @@ class OSTypeTests(APITestCase):
         Ensure we can partial update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -831,7 +831,7 @@ class OSTypeTests(APITestCase):
         Ensure we can destroy a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -853,7 +853,7 @@ class EndUserTests(APITestCase):
         self.client = APIClient()
         self.user = User.objects.create_user('t01', email='t01@test.com', password='t01t02t03')
         self.user.save()
-        self.default_test_url = '/api/v1/endusers/'
+        self.default_test_uri = '/api/v1/endusers/'
         self.default_test_data = {'username': 'tttt_01', 'department': 'tttt_02'}
         self.default_test_data_err = {'username': 'tttt_01_length_over_20', 'department': 'tttt_02'}
         self.default_model = EndUser
@@ -865,7 +865,7 @@ class EndUserTests(APITestCase):
         """
         Ensure we can create a new object without auth.
         """
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -876,7 +876,7 @@ class EndUserTests(APITestCase):
         but with a situation: len(some_field) > max_allowed_characters
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data_err
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -886,7 +886,7 @@ class EndUserTests(APITestCase):
         Ensure we can create a new object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -898,7 +898,7 @@ class EndUserTests(APITestCase):
         Ensure we can list the objects with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -912,7 +912,7 @@ class EndUserTests(APITestCase):
         Ensure we can retrieve a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -933,7 +933,7 @@ class EndUserTests(APITestCase):
         Ensure we can update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -955,7 +955,7 @@ class EndUserTests(APITestCase):
         Ensure we can partial update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -977,7 +977,7 @@ class EndUserTests(APITestCase):
         Ensure we can destroy a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -999,7 +999,7 @@ class ClusterTests(APITestCase):
         self.client = APIClient()
         self.user = User.objects.create_user('t01', email='t01@test.com', password='t01t02t03')
         self.user.save()
-        self.default_test_url = '/api/v1/clusters/'
+        self.default_test_uri = '/api/v1/clusters/'
         self.default_test_data = {'name': 'tttt_01', 'desc': 'tttt_02'}
         self.default_test_data_err = {'name': 'tttt_01_length_over_20', 'desc': 'tttt_02'}
         self.default_model = Cluster
@@ -1011,7 +1011,7 @@ class ClusterTests(APITestCase):
         """
         Ensure we can create a new object without auth.
         """
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -1022,7 +1022,7 @@ class ClusterTests(APITestCase):
         but with a situation: len(some_field) > max_allowed_characters
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data_err
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -1032,7 +1032,7 @@ class ClusterTests(APITestCase):
         Ensure we can create a new object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1044,7 +1044,7 @@ class ClusterTests(APITestCase):
         Ensure we can list the objects with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1058,7 +1058,7 @@ class ClusterTests(APITestCase):
         Ensure we can retrieve a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1079,7 +1079,7 @@ class ClusterTests(APITestCase):
         Ensure we can update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1101,7 +1101,7 @@ class ClusterTests(APITestCase):
         Ensure we can partial update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1123,7 +1123,7 @@ class ClusterTests(APITestCase):
         Ensure we can destroy a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1145,7 +1145,7 @@ class BusinessUnitTests(APITestCase):
         self.client = APIClient()
         self.user = User.objects.create_user('t01', email='t01@test.com', password='t01t02t03')
         self.user.save()
-        self.default_test_url = '/api/v1/bizunits/'
+        self.default_test_uri = '/api/v1/bizunits/'
         self.default_test_data = {'name': 'tttt_01', 'desc': 'tttt_02'}
         self.default_test_data_err = {'name': 'tttt_01_length_over_20', 'desc': 'tttt_02'}
         self.default_model = BusinessUnit
@@ -1157,7 +1157,7 @@ class BusinessUnitTests(APITestCase):
         """
         Ensure we can create a new object without auth.
         """
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -1168,7 +1168,7 @@ class BusinessUnitTests(APITestCase):
         but with a situation: len(some_field) > max_allowed_characters
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data_err
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -1178,7 +1178,7 @@ class BusinessUnitTests(APITestCase):
         Ensure we can create a new object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1190,7 +1190,7 @@ class BusinessUnitTests(APITestCase):
         Ensure we can list the objects with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1204,7 +1204,7 @@ class BusinessUnitTests(APITestCase):
         Ensure we can retrieve a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1225,7 +1225,7 @@ class BusinessUnitTests(APITestCase):
         Ensure we can update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1247,7 +1247,7 @@ class BusinessUnitTests(APITestCase):
         Ensure we can partial update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1269,7 +1269,7 @@ class BusinessUnitTests(APITestCase):
         Ensure we can destroy a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1291,7 +1291,7 @@ class RuntimeEnvironmentTests(APITestCase):
         self.client = APIClient()
         self.user = User.objects.create_user('t01', email='t01@test.com', password='t01t02t03')
         self.user.save()
-        self.default_test_url = '/api/v1/env/'
+        self.default_test_uri = '/api/v1/env/'
         self.default_test_data = {'name': 'tttt_01', 'desc': 'tttt_02'}
         self.default_test_data_err = {'name': 'tttt_01_length_over_20', 'desc': 'tttt_02'}
         self.default_model = RuntimeEnvironment
@@ -1303,7 +1303,7 @@ class RuntimeEnvironmentTests(APITestCase):
         """
         Ensure we can create a new object without auth.
         """
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -1314,7 +1314,7 @@ class RuntimeEnvironmentTests(APITestCase):
         but with a situation: len(some_field) > max_allowed_characters
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data_err
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -1324,7 +1324,7 @@ class RuntimeEnvironmentTests(APITestCase):
         Ensure we can create a new object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1336,7 +1336,7 @@ class RuntimeEnvironmentTests(APITestCase):
         Ensure we can list the objects with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1350,7 +1350,7 @@ class RuntimeEnvironmentTests(APITestCase):
         Ensure we can retrieve a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1371,7 +1371,7 @@ class RuntimeEnvironmentTests(APITestCase):
         Ensure we can update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1393,7 +1393,7 @@ class RuntimeEnvironmentTests(APITestCase):
         Ensure we can partial update a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1415,7 +1415,7 @@ class RuntimeEnvironmentTests(APITestCase):
         Ensure we can destroy a object with auth.
         """
         self.log_in()
-        url = self.default_test_url
+        url = self.default_test_uri
         data = self.default_test_data
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
