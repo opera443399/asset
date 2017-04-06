@@ -1,6 +1,6 @@
 # coding=utf-8
 # ----------------------------------
-# @ 2017/3/13
+# @ 2017/4/6
 # @ PC
 # ----------------------------------
 
@@ -144,6 +144,7 @@ class RuntimeEnvironment(models.Model):
     class Meta:
         verbose_name = _('RunEnv')
         verbose_name_plural = _('RunEnv')
+
 
 @python_2_unicode_compatible
 class Machine(models.Model):
