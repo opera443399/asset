@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-23 15:38+0800\n"
+"POT-Creation-Date: 2017-04-07 11:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:66 admin.py:91 templates/assets/list_hosts.html.py:81
-#: templates/assets/list_vms.html:81
+#: admin.py:66 admin.py:91 templates/assets/list_hosts.html.py:92
+#: templates/assets/list_vms.html:92
 msgid "OS"
 msgstr "OS"
 
@@ -25,8 +25,8 @@ msgstr "OS"
 msgid "APP"
 msgstr "应用"
 
-#: admin.py:70 admin.py:93 templates/assets/list_hosts.html.py:82
-#: templates/assets/list_vms.html:82
+#: admin.py:70 admin.py:93 templates/assets/list_hosts.html.py:93
+#: templates/assets/list_vms.html:93
 msgid "Status"
 msgstr "状态"
 
@@ -51,7 +51,7 @@ msgid "Name"
 msgstr "名称"
 
 #: models.py:22 models.py:43 models.py:58 models.py:73 models.py:86
-#: models.py:113 models.py:126 models.py:139 models.py:180
+#: models.py:113 models.py:126 models.py:139 models.py:181
 msgid "Description"
 msgstr "描述"
 
@@ -107,7 +107,7 @@ msgstr "CPU(核)"
 msgid "Memory(GB)"
 msgstr "内存(GB)"
 
-#: models.py:64 models.py:65 models.py:228
+#: models.py:64 models.py:65 models.py:229
 msgid "Instance Type"
 msgstr "实例类型"
 
@@ -115,11 +115,11 @@ msgstr "实例类型"
 msgid "Location"
 msgstr "位置"
 
-#: models.py:79 models.py:80 models.py:182 models.py:211
+#: models.py:79 models.py:80 models.py:183 models.py:212
 msgid "IDC"
 msgstr "IDC"
 
-#: models.py:92 models.py:93 models.py:158 models.py:215
+#: models.py:92 models.py:93 models.py:159 models.py:216
 msgid "OS Type"
 msgstr "OS类型"
 
@@ -135,171 +135,177 @@ msgstr "姓名"
 msgid "Department"
 msgstr "部门"
 
-#: models.py:106 models.py:107 models.py:167 models.py:227
-#: templates/assets/list_hosts.html:86 templates/assets/list_vms.html.py:86
+#: models.py:106 models.py:107 models.py:168 models.py:228
+#: templates/assets/list_hosts.html:97 templates/assets/list_vms.html.py:97
 msgid "EndUser"
 msgstr "使用者"
 
-#: models.py:119 models.py:120 models.py:151
+#: models.py:119 models.py:120 models.py:152
 msgid "Cluster"
 msgstr "集群"
 
-#: models.py:132 models.py:133 models.py:165 models.py:225
-#: templates/assets/list_hosts.html:10 templates/assets/list_hosts.html:84
-#: templates/assets/list_vms.html.py:10 templates/assets/list_vms.html:84
+#: models.py:132 models.py:133 models.py:166 models.py:226
+#: templates/assets/filters.html:7 templates/assets/list_hosts.html.py:20
+#: templates/assets/list_hosts.html:95 templates/assets/list_vms.html.py:20
+#: templates/assets/list_vms.html:95
 msgid "BizUnit"
 msgstr "业务单元"
 
-#: models.py:145 models.py:146 models.py:166 models.py:226
-#: templates/assets/list_hosts.html:35 templates/assets/list_hosts.html:83
-#: templates/assets/list_vms.html.py:35 templates/assets/list_vms.html:83
+#: models.py:145 models.py:146 models.py:167 models.py:227
+#: templates/assets/filters.html:32 templates/assets/list_hosts.html.py:36
+#: templates/assets/list_hosts.html:94 templates/assets/list_vms.html.py:36
+#: templates/assets/list_vms.html:94
 msgid "RunEnv"
 msgstr "运行环境"
 
-#: models.py:150 models.py:208 templates/assets/list_hosts.html.py:78
-#: templates/assets/list_vms.html:78
+#: models.py:151 models.py:209 templates/assets/list_hosts.html.py:89
+#: templates/assets/list_vms.html:89
 msgid "Hostname"
 msgstr "主机名"
 
-#: models.py:153
+#: models.py:154
 msgid "IP_WAN1"
 msgstr "外网IP1"
 
-#: models.py:154
+#: models.py:155
 msgid "IP_WAN2"
 msgstr "外网IP2"
 
-#: models.py:155
+#: models.py:156
 msgid "IP_LAN_MGMT"
 msgstr "管理IP"
 
-#: models.py:156
+#: models.py:157
 msgid "IP_LAN_STOR"
 msgstr "存储IP"
 
-#: models.py:157
+#: models.py:158
 msgid "IP_LAN_BIZ"
 msgstr "业务IP"
 
-#: models.py:159 models.py:216
+#: models.py:160 models.py:217
 msgid "Admin"
 msgstr "管理员帐号"
 
-#: models.py:160 models.py:217
+#: models.py:161 models.py:218
 msgid "Password of Admin"
 msgstr "管理员密码"
 
-#: models.py:161 models.py:218
+#: models.py:162 models.py:219
 msgid "Guest"
 msgstr "用户帐号"
 
-#: models.py:162 models.py:219
+#: models.py:163 models.py:220
 msgid "Password of Guest"
 msgstr "用户密码"
 
-#: models.py:164 models.py:224
+#: models.py:165 models.py:225
 msgid "App Description"
 msgstr "应用描述"
 
-#: models.py:169 models.py:221
+#: models.py:170 models.py:222
 msgid "Is Monited?"
 msgstr "监控?"
 
-#: models.py:170 models.py:222
+#: models.py:171 models.py:223
 msgid "Is Online?"
 msgstr "上线?"
 
-#: models.py:171
+#: models.py:172
 msgid "Is Virt Host?"
 msgstr "宿主机?"
 
-#: models.py:173
+#: models.py:174
 msgid "SN"
 msgstr "序列号"
 
-#: models.py:174
+#: models.py:175
 msgid "Vendor"
 msgstr "厂商"
 
-#: models.py:175
+#: models.py:176
 msgid "Model"
 msgstr "机型"
 
-#: models.py:176
+#: models.py:177
 msgid "IPMI IP"
 msgstr ""
 
-#: models.py:177
+#: models.py:178
 msgid "IPMI User"
 msgstr "IPMI帐号"
 
-#: models.py:178
+#: models.py:179
 msgid "IPMI Password"
 msgstr "IPMI密码"
 
-#: models.py:179
+#: models.py:180
 msgid "RAID"
 msgstr ""
 
-#: models.py:183
+#: models.py:184
 msgid "IDC Rack No."
 msgstr "机柜编号"
 
-#: models.py:184
+#: models.py:185
 msgid "IDC Rack Height"
 msgstr "在机柜中的高度"
 
-#: models.py:186
+#: models.py:187
 msgid "Asset No."
 msgstr "资产编号"
 
-#: models.py:187 models.py:231
+#: models.py:188 models.py:232
 msgid "When Created?"
 msgstr "何时创建？"
 
-#: models.py:188 models.py:232
+#: models.py:189 models.py:233
 msgid "When Modified?"
 msgstr "何时修改？"
 
-#: models.py:194 models.py:195
+#: models.py:195 models.py:196
 msgid "Machines"
 msgstr "物理机"
 
-#: models.py:203 models.py:246
+#: models.py:204 models.py:247
 msgid "Added recently?"
 msgstr "新增？"
 
-#: models.py:209
+#: models.py:210
 msgid "On Host"
 msgstr "宿主机"
 
-#: models.py:210
+#: models.py:211
 msgid "On Cluster"
 msgstr "集群"
 
-#: models.py:213
+#: models.py:214
 msgid "IP_WAN"
 msgstr "外网IP"
 
-#: models.py:214
+#: models.py:215
 msgid "IP_LAN"
 msgstr "内网IP"
 
-#: models.py:229
+#: models.py:230
 msgid "Mount Point"
 msgstr "挂载点"
 
-#: models.py:230
+#: models.py:231
 msgid "VM Description"
 msgstr "vm备注"
 
-#: models.py:238 models.py:239
+#: models.py:239 models.py:240
 msgid "VMs"
 msgstr "虚拟机"
 
 #: templates/assets/about.html:6
 msgid "#ops works# from 2016 to 2017."
 msgstr ""
+
+#: templates/assets/filters.html:13 templates/assets/filters.html.py:38
+msgid "All"
+msgstr "全部"
 
 #: templates/assets/i18n.html:10
 msgid "Region Select"
@@ -317,49 +323,44 @@ msgstr "首页"
 msgid "ops resource management."
 msgstr "运维资源管理平台"
 
-#: templates/assets/list_hosts.html:3 templates/assets/list_hosts.html:75
+#: templates/assets/list_hosts.html:3 templates/assets/list_hosts.html:85
 #: templates/assets/nav.html.py:26 templates/assets/nav.html:41
 msgid "Host"
 msgstr "宿主机"
 
-#: templates/assets/list_hosts.html:16 templates/assets/list_hosts.html:41
-#: templates/assets/list_vms.html.py:16 templates/assets/list_vms.html:41
-msgid "All"
-msgstr "全部"
+#: templates/assets/list_hosts.html:12 templates/assets/list_vms.html.py:12
+msgid "Move to"
+msgstr ""
 
-#: templates/assets/list_hosts.html:61 templates/assets/list_vms.html.py:61
+#: templates/assets/list_hosts.html:59 templates/assets/list_vms.html.py:59
+msgid "Search"
+msgstr ""
+
+#: templates/assets/list_hosts.html:71 templates/assets/list_vms.html.py:71
 msgid "Previous"
 msgstr "上一页"
 
-#: templates/assets/list_hosts.html:69 templates/assets/list_vms.html.py:69
+#: templates/assets/list_hosts.html:79 templates/assets/list_vms.html.py:79
 msgid "Next"
 msgstr "下一页"
 
-#: templates/assets/list_hosts.html:79 templates/assets/list_vms.html.py:79
+#: templates/assets/list_hosts.html:90 templates/assets/list_vms.html.py:90
 msgid "Type"
 msgstr "类型"
 
-#: templates/assets/list_hosts.html:80 templates/assets/list_vms.html.py:80
+#: templates/assets/list_hosts.html:91 templates/assets/list_vms.html.py:91
 msgid "IP"
 msgstr ""
 
-#: templates/assets/list_hosts.html:85 templates/assets/list_vms.html.py:85
+#: templates/assets/list_hosts.html:96 templates/assets/list_vms.html.py:96
 msgid "Desc"
 msgstr "描述"
 
-#: templates/assets/list_hosts.html:98 templates/assets/list_vms.html.py:98
-msgid "Online"
-msgstr "在线"
-
-#: templates/assets/list_hosts.html:100 templates/assets/list_vms.html:100
-msgid "Offline"
-msgstr "离线"
-
-#: templates/assets/list_hosts.html:114 templates/assets/list_vms.html:114
+#: templates/assets/list_hosts.html:120 templates/assets/list_vms.html:120
 msgid "Not available."
 msgstr "无记录。"
 
-#: templates/assets/list_vms.html:3 templates/assets/list_vms.html.py:75
+#: templates/assets/list_vms.html:3 templates/assets/list_vms.html.py:85
 #: templates/assets/nav.html:30 templates/assets/nav.html.py:45
 msgid "VM"
 msgstr "虚拟机"
